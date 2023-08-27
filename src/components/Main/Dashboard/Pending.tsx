@@ -88,7 +88,6 @@ export const Pending: React.FC = () => {
   useEffect(() => {
     fetchData();
     handlePayment;
-    console.log(transactions);
   }, []);
 
   if (isLoading) {

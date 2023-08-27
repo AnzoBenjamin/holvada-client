@@ -63,8 +63,7 @@ const Map: React.FC<MapProps> = ({ onLocationChange, globalLocation }) => {
           onLocationChange(position.coords.latitude, position.coords.longitude);
         },
         (error) => {
-          console.error("Error getting current position:", error.message);
-          alert("Error getting your location. Please allow location access.");
+          alert("Error getting your location. Please allow location access." + error.message);
         }
       );
     }
