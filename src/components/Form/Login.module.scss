@@ -1,0 +1,32 @@
+@import "../../scss/utils/variables";
+
+.form-login {
+  display: grid;
+  gap: 0.5rem;
+  h2 {
+    font-family: "Cera-bold", sans-serif;
+    text-transform: uppercase;
+    font-size: $fs-500;
+  }
+}
+
+.error {
+  background-color: lightcoral;
+  padding: 0.5rem 0.6rem;
+  color: $color-primary-light;
+}
+
+.message {
+  background-color: lightgreen;
+  padding: 0.5rem 0.6rem;
+  color: $color-primary-light;
+}
+
+@media (min-width: 1000px) {
+  .form-login {
+    h2 {
+      font-size: $fs-600;
+      margin-bottom: 1rem;
+    }
+  }
+}

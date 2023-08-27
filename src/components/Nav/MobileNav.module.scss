@@ -1,0 +1,64 @@
+@import "../../scss/utils/variables";
+
+@media (min-width: 1000px) {
+  .nav {
+    &__hidden {
+      max-width: 100% !important;
+      &--items {
+        font-size: $fs-800;
+        transform: translate(-100%, -50%);
+      }
+    }
+  }
+}
+.nav {
+  &__hidden {
+    position: fixed;
+    background-image: linear-gradient(
+      to top left,
+      $color-primary,
+      $color-primary-light
+    );
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 100;
+    grid-template-rows: 3rem 1fr;
+    padding: 1.5rem;
+    opacity: 0;
+    transform: translate(100%, -100%);
+    transition: opacity 400ms, transform 200ms;
+    &--header {
+      display: flex;
+      justify-content: space-between;
+    }
+    &.visible {
+      opacity: 1;
+      transform: translate(0, 0);
+    }
+    &--items {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: $fs-700;
+      display: grid;
+      gap: 0.5rem;
+    }
+  }
+
+  &__icon {
+    z-index: 5;
+
+    height: 1.6rem;
+    width: 1.6rem;
+    cursor: pointer;
+  }
+  &__header {
+    font-family: "Cera-bold", sans-serif;
+    text-transform: uppercase;
+    font-size: $fs-500;
+    letter-spacing: 1px;
+  }
+}

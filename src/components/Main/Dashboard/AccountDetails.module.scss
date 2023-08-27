@@ -1,0 +1,41 @@
+@import "../../../scss/utils/variables";
+
+.btn{
+    width: 100%;
+}
+
+@media (min-width: 1000px) {
+
+    .form-details {
+      grid-template-columns: 1fr;
+  
+      h2 {
+        font-size: $fs-600;
+        margin-bottom: 1rem;
+      }
+    }
+  
+    .passwords {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+  
+    .map {
+      display: grid;
+      gap: 0.5rem;
+    }
+  
+    .additional-content {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+  
+    .contact-info {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+  }
+

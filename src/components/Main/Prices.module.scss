@@ -1,0 +1,201 @@
+@import "../../scss/utils/variables";
+
+.section-prices {
+  padding: 3rem 1.5rem;
+}
+.plan-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.pricing-plan {
+  width: 75%;
+  position: relative;
+  overflow: hidden;
+}
+.plan-name {
+  color: $color-primary-dark;
+  font-family: "Cera-bold";
+  font-size: $fs-500;
+  text-transform: uppercase;
+  letter-spacing: 0.75px;
+  margin-bottom: 1rem;
+}
+.plan-text {
+  line-height: 1.4;
+  color: #6f6f6f;
+}
+.plan-price {
+  font-size: $fs-900*1.5;
+  font-family: "Cera-heavy";
+  color: $color-secondary-light;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+.plan-price span {
+  font-size: $fs-700;
+  font-weight: 500;
+  margin-right: 0.8rem;
+}
+.plan-sign-up {
+  text-align: center;
+  margin-top: 4.8rem;
+}
+.plan-details {
+  line-height: 1.6;
+  text-align: center;
+}
+.feature-title {
+  font-size: 2.4rem;
+  color: #333;
+  font-weight: 700;
+  margin-bottom: 1.6rem;
+}
+.feature-text {
+  font-size: 1.8rem;
+  line-height: 1.8;
+  display: block;
+}
+.feature-icon {
+  color: #e67e22;
+  height: 3.2rem;
+  width: 3.2rem;
+  margin-bottom: 3.2rem;
+  background-color: #fdf2e9;
+  padding: 1.6rem;
+  border-radius: 50%;
+  display: block;
+}
+
+.list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+}
+.list-icon {
+  width: 3rem;
+  height: 3rem;
+  color: #e67e22;
+}
+
+.list-item {
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  line-height: 1.2;
+}
+
+.starter {
+  border: 2px solid $color-primary-light;
+  padding: 2rem;
+}
+.complete {
+  background-color: $color-primary-light;
+  padding: 2rem;
+
+  &::after {
+    content: "Best Value";
+    position: absolute;
+    top: 3%;
+    right: -7%;
+    background-color: $color-secondary-light;
+    color: $color-white;
+    padding: 0.5rem 2rem;
+    rotate: 45deg;
+  }
+}
+
+.card-area {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  margin-top: 2.5rem;
+  align-items: center;
+}
+.note {
+  text-align: center;
+  color: $color-secondary-light;
+  font-size: $fs-200;
+  margin-top: 1rem;
+}
+
+.common {
+  margin-top: 3rem;
+  &__area {
+    display: grid;
+    gap: 2rem;
+    &--item {
+      display: grid;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+    &--heading {
+      display: grid;
+      font-size: $fs-500;
+    }
+  }
+}
+
+.icon {
+  width: 4.8rem;
+  height: 4.8rem;
+  background-color: $color-primary-light;
+  padding: 1rem;
+  border-radius: 2px;
+}
+@media (min-width: 768px) {
+  .section-prices {
+    padding: 3rem 2rem;
+  }
+  .common {
+    &__area {
+      grid-template-columns: repeat(2, 1fr);
+      &--item {
+        width: 70%;
+        margin-inline: auto;
+      }
+    }
+  }
+  .card-area {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+  .starter, .complete{
+    padding: 1rem;
+    height: 100%;
+  }
+}
+
+@media (min-width: 1000px) {
+  .common {
+    &__area {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0;
+      &--item {
+        width: 50%;
+        margin-inline: auto;
+      }
+      &:last-child {
+        grid-row: 2/3;
+        grid-column: 2/3;
+      }
+    }
+  }
+  .section-prices {
+  }
+  .card-area {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 4rem;
+    padding-inline: 3rem;
+  }
+  .starter, .complete{
+    padding: 2rem;
+  }
+}
+
+

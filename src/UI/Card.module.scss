@@ -1,0 +1,9 @@
+.pricing-plan {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  transition: transform 400ms;
+  &:hover {
+    transform: translateY(-1rem);
+  }
+}

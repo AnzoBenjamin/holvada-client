@@ -1,0 +1,28 @@
+@import '../utils/variables';
+.btn{
+    border: none;
+    background-color: $color-tertiary;
+    color: $color-white;
+    font-size: $fs-300;
+    padding: .5rem 1rem;
+    display: grid;
+    align-items: center;
+    box-shadow: 0 1px 16px $color-tertiary;
+    transition: box-shadow 400ms, background-color 400ms;
+    font-family: 'Cera-light', sans-serif;
+    &:active{
+        box-shadow: none;
+        transform: translateY(.1rem);
+    }
+    &:hover{
+        background-color: $color-tertiary-dark;
+    }
+    z-index: 100;
+}
+
+@media (min-width: 1200px) {
+    .btn{
+        font-size: $fs-400;
+        padding: .5rem 2rem;
+    }
+}

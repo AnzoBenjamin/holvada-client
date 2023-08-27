@@ -1,0 +1,32 @@
+.section-about{
+    padding: 3rem 1.5rem;
+    text-align: center;
+    height: 100vh;
+    &-img{
+        width: 15rem;
+        margin-inline: auto;        
+    }
+}
+.section-about__text-area{
+    padding-top: 2.7rem;
+}
+.text-content{
+    padding-top: 1rem;
+    line-height: 1.5;
+}
+@media (min-width: 1000px) {
+    .section-about{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        padding: 7.5rem 6rem;
+        align-items: center;
+        &-img{
+            width: 24rem;
+        }
+    }
+}
+@media (min-width: 660px) {
+    .section-about{
+        padding-inline: 6rem;
+    }
+}

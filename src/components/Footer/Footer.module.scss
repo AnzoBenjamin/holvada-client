@@ -1,0 +1,55 @@
+@import "../../scss/utils/variables";
+
+.footer {
+  background-color: $color-grey-light;
+  color: $color-grey;
+  margin-top: 6rem;
+  padding: 1.5rem;
+  display: grid;
+  justify-content: center;
+  grid-template-columns: 1fr;
+  text-align: center;
+  width: 100vw;
+  &-header{
+    font-size: $fs-900*1.5;
+  }
+  &--icon-area{
+    display: flex;
+    gap: 1.2rem;
+    justify-content: center;
+    grid-row: 1/2;
+  }
+
+  &-bottom{
+    display: grid;
+    text-align: left;
+    width: 100%;
+    justify-content: center;
+    gap: 2rem;
+    }
+}
+
+
+.icon{
+  height: 1.2rem;
+  width: 1.2rem;
+  cursor: pointer;
+}
+
+@media (min-width: 1000px){
+  .footer{
+    padding-inline: 6rem;
+    &-header{
+      font-size: $fs-900*2.5;
+    }
+    &-bottom{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+  .icon{
+    height: 1.8rem;
+    width: 1.8rem;
+  }
+}

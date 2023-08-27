@@ -1,0 +1,96 @@
+@import "../../scss/utils/variables";
+
+@keyframes clip-from-top {
+  0% {
+    clip-path: ellipse(100% 100% at 50% 50%);
+  }
+  100% {
+    clip-path: ellipse(100% 100% at 50.5% 160%);
+  }
+}
+
+.video-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  animation: clip-from-top 1s ease-in-out 5.5s forwards;
+}
+.hero {
+  text-align: center;
+  display: grid;
+  max-width: 75rem;
+  margin-inline: auto;
+  &-content {
+    z-index: 0;
+    padding: 1.5rem 3rem 0 3rem;
+    margin-top: 2.5rem;
+  }
+  &__text-area {
+    margin-top: 1.5rem;
+  }
+  &__btn-area {
+    margin-top: 1rem;
+    display: flex;
+    gap: .5rem;
+    justify-content: center;
+  }
+}
+.btn{
+  &-primary{
+    color: $color-white;
+    background-color: $color-primary-dark;
+    padding:.5rem 1rem;
+    box-shadow: 0 1px 4rem rgba($color: $color-primary, $alpha: 0.5);
+    transition: background-color 300ms linear;
+    font-family: 'Inter', sans-serif;
+    width: max-content;
+    font-size: $fs-300;
+    &:hover{
+      background-color: darken($color: $color-primary-dark, $amount: 20%) ;
+    }
+  }
+  &-secondary{
+    padding:.5rem 1rem;
+    font-size: $fs-300;
+    color: $color-primary-dark;
+    background-color: $color-white;
+    transition: background-color 300ms linear;
+    font-family: 'Inter', sans-serif;
+
+    &:hover{
+      background-color: darken($color: $color-white, $amount: 10%) ;
+    }
+
+  }
+  
+}
+p {
+  font-family: "Inter", sans-serif;
+}
+
+@media (min-width: 470px) {
+}
+@media (min-width: 1000px) {
+  @keyframes clip-from-top {
+    0% {
+      clip-path: ellipse(100% 100% at 50% 50%);
+    }
+    100% {
+      clip-path: ellipse(100% 100% at 50% 160%);
+    }
+  }
+  
+  .video-container {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
+  .hero {
+    &__text-area {
+      margin-inline: auto;
+      width: 50%;
+    }
+  }
+}

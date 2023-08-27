@@ -1,0 +1,101 @@
+@import "../scss/utils/variables";
+
+.section {
+  display: grid;
+  grid-template-areas:
+    "img"
+    "heading"
+    "content";
+  align-items: center;
+}
+.img {
+  width: 50%;
+  &-box {
+    grid-area: img;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &::after,
+    &::before {
+      content: "";
+      display: block;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+    }
+    &::after {
+      width: 45%;
+      padding-bottom: 45%;
+      background-color: #fae5d3;
+      z-index: -1;
+    }
+    &::before {
+      width: 60%;
+
+      padding-bottom: 60%;
+      background-color: #fdf2e9;
+      z-index: -2;
+    }
+  }
+}
+.heading {
+  font-size: $fs-400;
+  font-family: "Cera-bold", sans-serif;
+  margin-bottom: 0.5rem;
+  &-area {
+    grid-area: heading;
+    margin-top: 4rem;
+  }
+}
+.content {
+  padding: 3rem 3.5rem;
+  background-color:lighten($color: $color-primary-light, $amount: .8);
+  &-area {
+    grid-area: content;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-top: 6rem;
+
+  }
+}
+
+.number {
+  color: $color-primary;
+  font-size: $fs-500;
+  font-family: "Cera-bold", sans-serif;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+@media (min-width: 1000px) {
+  .section {
+    display: grid;
+    grid-template-areas:
+      "img heading"
+      "content content";
+  }
+  .number {
+    font-size: $fs-900;
+    margin-bottom: 1.2rem;
+  }
+  .heading {
+    font-size: $fs-500;
+    margin-bottom: 0.5rem;
+  }
+  .content {
+    padding: 3rem 3.5rem;
+    background-color:lighten($color: $color-primary-light, $amount: .8);
+    &-area {
+      grid-area: content;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      margin-top: 8rem;
+  
+    }
+  }
+}

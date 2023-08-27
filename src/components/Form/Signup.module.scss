@@ -1,0 +1,89 @@
+@import "../../scss/utils/variables";
+.form-signup {
+  display: grid;
+  gap: .5rem;
+  max-width: 100vw;
+  max-height: 100vh;
+
+
+  h2 {
+    font-family: "Cera-bold", sans-serif;
+    text-transform: uppercase;
+    font-size: $fs-500;
+  }
+  padding: 3rem 1rem .5rem 1rem;
+}
+.btn{
+}
+.error {
+  background-color: lightcoral;
+  padding: 0.5rem 0.6rem;
+  color: $color-primary-light;
+}
+
+.message {
+  background-color: lightgreen;
+  padding: 0.5rem 0.6rem;
+  color: $color-primary-light;
+}
+
+.map {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.additional-content {
+  display: grid;
+  gap: .5rem;
+
+}
+
+.contact-info {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.passwords {
+  display: grid;
+  gap: 0.5rem;
+  
+
+}
+.passwords, .contact-info, .additional-content{
+  grid-template-columns: repeat(2, 1fr);
+
+}
+@media (min-width: 1000px) {
+
+  .form-signup {
+    grid-template-columns: 1fr;
+
+    h2 {
+      font-size: $fs-600;
+      margin-bottom: 1rem;
+    }
+  }
+
+  .passwords {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .map {
+    display: grid;
+    gap: 0.5rem;
+  }
+
+  .additional-content {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .contact-info {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+}

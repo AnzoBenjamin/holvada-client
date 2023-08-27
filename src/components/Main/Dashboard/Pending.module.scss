@@ -1,0 +1,15 @@
+@import "../../../scss/utils/variables";
+.pending {
+  display: grid;
+  height: 100%;
+  gap: 1rem;
+}
+.form {
+  position: relative;
+}
+
+@media (min-width: 1000px) {
+  .pending {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

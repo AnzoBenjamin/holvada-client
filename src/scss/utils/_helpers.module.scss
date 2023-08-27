@@ -1,0 +1,57 @@
+@import "./variables";
+
+.heading-secondary {
+  color: $color-secondary;
+  font-size: $fs-600;
+  line-height: 1.1;
+  margin-top: 0.5rem;
+  font-family: "Cera-bold", sans-serif;
+}
+
+.heading-tertiary {
+  color: $color-secondary-light;
+  font-size: $fs-400;
+  font-family: "Cera-light", sans-serif;
+  text-transform: capitalize;
+}
+.heading-primary {
+  color: $color-secondary;
+  line-height: 1;
+  font-size: $fs-700;
+  font-family: "Cera-bold", sans-serif;
+}
+.heading-secondary,
+.heading-tertiary {
+  text-align: left;
+}
+
+@media (min-width: 470px) {
+  .heading-secondary {
+    font-size: $fs-700;
+  }
+  .heading-tertiary {
+    font-size: $fs-300;
+  }
+  .heading-primary {
+    font-size: $fs-700;
+  }
+}
+.grid{
+  display: grid;
+  align-items: center;
+}
+
+.grid-2-cols{
+  grid-template-columns: repeat(2, 1fr);
+}
+@media (min-width: 1000px) {
+  .heading-secondary {
+    font-size: $fs-800;
+  }
+  .heading-tertiary {
+    font-size: $fs-500;
+  }
+  .heading-primary {
+    font-size: $fs-900;
+  }
+}

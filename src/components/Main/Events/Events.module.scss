@@ -1,0 +1,7 @@
+@import "../../../scss/utils/variables";
+
+.hero {
+  color: $color-primary-light !important;
+  z-index: 0;
+  background-color: $color-primary-light;
+}

@@ -1,0 +1,41 @@
+@import "../../scss/utils/variables";
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding: 1.5rem 1rem;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  h2 {
+    font-family: "Cera-bold", sans-serif;
+    text-transform: uppercase;
+    font-size: $fs-500;
+    letter-spacing: 1px;
+    z-index: 5;
+  }
+}
+.btn-area{
+  display: flex;
+  gap: .5rem;
+}
+.nav__header{
+  font-family: "Cera-bold", sans-serif;
+  text-transform: uppercase;
+  font-size: $fs-500;
+  letter-spacing: 1px;
+  z-index: 5;
+  cursor: pointer;
+}
+@media (min-width: 1000px) {
+  .header {
+    padding: 1.5rem 3rem;
+
+    h2 {
+      font-size: $fs-600;
+    }
+  }
+  .btn-area{
+    display: flex;
+    gap: .5rem;
+  }
+}

@@ -1,0 +1,49 @@
+@import "../../scss/utils/variables";
+
+.section-cta {
+  padding: 3rem 1.5rem;
+  background-image: linear-gradient(to bottom, $color-white,$color-primary,$color-white );
+}
+
+.cta-card {
+  background-color: $color-white;
+  padding: 1.5rem;
+  display: grid;
+  gap: 1rem;
+  margin-inline: auto;
+  box-shadow: 0 4px 4rem rgba($color: $color-primary, $alpha: 0.5);
+}
+
+.btn {
+
+  border: none;
+  background-color: $color-secondary-light;
+  color: $color-white;
+  font-size: $fs-300;
+  padding: .8rem 1rem;
+  margin-top: 1rem;
+  box-shadow: 0 1px 16px $color-secondary-light;
+  transition: box-shadow 400ms, background-color 400ms;
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
+  margin-inline: auto;
+  &:active {
+    box-shadow: none;
+    transform: translateY(0.1rem);
+  }
+  &:hover {
+    background-color: $color-secondary;
+  }
+  &:disabled {
+    cursor: not-allowed;
+    background-color: $color-grey;
+    box-shadow: 0 1px 16px $color-grey-light;
+  }
+}
+
+
+@media (min-width: 1200px) {
+  .cta-card {
+    width: 40%;
+  }
+}

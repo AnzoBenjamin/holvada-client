@@ -1,0 +1,71 @@
+@import "../../../scss/utils/variables";
+.mobile-nav {
+  padding:0 1.5rem;
+  position: relative;
+  margin-bottom: 1rem;
+  z-index: 10;
+}
+.nav {
+  background-color: $color-secondary;
+  color: $color-primary-light;
+  padding: 1.5rem 3rem;
+  box-shadow: 1px 1px 2rem rgba($color: $color-secondary-light, $alpha: 0.5);
+  display: grid;
+  align-items: center;
+  height: 90vh;
+  &-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    > h2 {
+      font-size: $fs-700;
+      text-transform: uppercase;
+    }
+  }
+}
+
+.mobile-list{
+  background-color: $color-secondary;
+  color: $color-primary-light;
+  padding: 1.5rem 3rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: transform 300ms ease-in-out;
+  transform: translateX(-100%);
+  &.active{
+    transform: translateX(0);
+  }
+}
+.list {
+  &-item {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: $fs-500;
+    height: 100%;
+    &:not(:first-child) {
+      margin-top: 1rem;
+    }
+    .icon {
+      width: 1.2rem;
+      height: 1.2rem;
+    }
+  }
+}
+.img {
+  width: 1.6rem;
+  height: 1.6rem;
+}
+.icon {
+  width: 2rem;
+  height: 2rem;
+  cursor: pointer;
+}
+.close{
+  position: absolute;
+  top: 0;
+  right: 0;
+
+}

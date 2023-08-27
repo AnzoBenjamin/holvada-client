@@ -1,0 +1,28 @@
+@import '../scss/utils/variables';
+.intro{
+    display: flex;
+    margin-top: 8rem;
+    flex-direction: column;
+    margin-inline: auto;
+}
+
+
+@media (min-width:1000px) {
+    .intro{
+        flex-direction: row;
+        margin-top: 8rem;
+        justify-content: space-between;
+        align-items: center;
+        padding-inline: 3rem;
+        gap: 5rem;
+        max-width: 75rem;
+        h2{
+            font-size: $fs-800;
+            text-transform: uppercase;
+            font-family: 'Cera-bold', sans-serif;
+        }
+        p{
+        }
+    }
+}
+

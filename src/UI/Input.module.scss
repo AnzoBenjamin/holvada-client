@@ -1,0 +1,23 @@
+@import '../scss/utils/variables';
+
+.input{
+    border: none;
+    font-size: $fs-300;
+    background-color: $color-grey-light;
+    padding: 1rem 1.2rem;
+    width: 100%;
+    
+}
+
+@media (min-width:1000px) {
+    
+
+.input{
+    border: none;
+    font-size: $fs-300;
+    background-color: $color-grey-light;
+    padding: 1rem 1.2rem;
+    
+}
+
+}
