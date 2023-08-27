@@ -224,7 +224,6 @@ export const Add: React.FC = () => {
   };
 
   useEffect(() => {
-    console.log(timeDateOne);
     people.map((value, index) => {
       if (value) {
         setTotalLessons((index + 1) * 8);
@@ -235,7 +234,6 @@ export const Add: React.FC = () => {
       setTotalLessons(0);
       setTotalAmount(0);
     }
-    console.log(people);
   }, [timeDateOne, people]);
   return (
     <main className={classes.main}>

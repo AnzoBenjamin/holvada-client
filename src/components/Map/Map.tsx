@@ -69,7 +69,7 @@ const Map: React.FC<MapProps> = ({ onLocationChange, globalLocation }) => {
       );
     }
     else {
-      console.log("Location already present")
+      return 
     }
   }, [navigator.geolocation, location]);
 
