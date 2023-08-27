@@ -14,7 +14,6 @@ export const Upcoming: React.FC = () => {
   const [transactions, setTransactions] = useState<DocumentData[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
-
   const { currentUser } = useAuth();
   const email = currentUser?.email;
 
@@ -35,8 +34,10 @@ export const Upcoming: React.FC = () => {
 
         // Map the document data and store it in the transactions state
         const transactionsData = querySnapshot.docs.map((doc) => doc.data());
-        setTransactions(transactionsData.filter(data => data.paid && data.attended!=true ));
-        setIsLoading(false)
+        setTransactions(
+          transactionsData.filter((data) => data.paid && data.attended != true)
+        );
+        setIsLoading(false);
       } catch (error) {
         console.log(error);
       }
@@ -45,9 +46,8 @@ export const Upcoming: React.FC = () => {
 
   useEffect(() => {
     fetchData();
-    console.log(transactions)
+    console.log(transactions);
   }, []);
-
 
   if (isLoading) {
     return <div>Loading...</div>; // Render a loading screen while data is being fetched
@@ -55,22 +55,24 @@ export const Upcoming: React.FC = () => {
 
   return (
     <>
-    {transactions.map((transaction) => {
-          const itemCards = [];
+      {transactions.map((transaction) => {
+        const itemCards = [];
 
-          for (let i = 0; i < transaction.weeklyFrequency; i++) {
-            itemCards.push(
-              <ItemCard
-                item={transaction.item}
-                date={transaction.date}
-                category={transaction.category}
-                time={transaction.time}
-                name={transaction.studentName}
-              />
-            );
-          }
-        })
-      }
+        for (let i = 0; i < transaction.studentInformation.length; i++) {
+          itemCards.push(
+            <ItemCard
+              item={transaction.group}
+              timeDateOne={transaction.timeDateOne}
+              category={transaction.type}
+              timeDateTwo={transaction.timeDateTwo}
+              name={transaction.studentInformation[i].name}
+              key={i}
+            />
+          );
+        }
+
+        return itemCards;
+      })}
     </>
   );
 };

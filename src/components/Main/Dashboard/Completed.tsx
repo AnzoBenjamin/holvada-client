@@ -34,7 +34,9 @@ export const Completed: React.FC = () => {
 
         // Map the document data and store it in the transactions state
         const transactionsData = querySnapshot.docs.map((doc) => doc.data());
-        setTransactions(transactionsData.filter((data) => data.paid && data.attended));
+        setTransactions(
+          transactionsData.filter((data) => data.paid && data.attended)
+        );
         setIsLoading(false);
       } catch (error) {
         console.log(error);
@@ -52,22 +54,24 @@ export const Completed: React.FC = () => {
 
   return (
     <>
-    {transactions.map((transaction) => {
-          const itemCards = [];
+      {transactions.map((transaction) => {
+        const itemCards = [];
 
-          for (let i = 0; i < transaction.weeklyFrequency; i++) {
-            itemCards.push(
-              <ItemCard
-                item={transaction.item}
-                date={transaction.date}
-                category={transaction.category}
-                time={transaction.time}
-                name={transaction.studentName}
-              />
-            );
-          }
-        })
-      }
+        for (let i = 0; i < transaction.studentInformation.length; i++) {
+          itemCards.push(
+            <ItemCard
+              item={transaction.group}
+              timeDateOne={transaction.timeDateOne}
+              category={transaction.type}
+              timeDateTwo={transaction.timeDateTwo}
+              name={transaction.studentInformation[i].name}
+              key={i}
+            />
+          );
+        }
+
+        return itemCards;
+      })}
     </>
   );
 };
