@@ -89,7 +89,7 @@ const Signup = () => {
   useEffect(() => {
     if (error && !message) {
       if (toast.current) {
-        toast.current.show({
+        (toast.current as any).show({
           severity: "error",
           summary: "Error",
           detail: error,
@@ -98,7 +98,7 @@ const Signup = () => {
       }
     } else if (message && !error) {
       if (toast.current) {
-        toast.current.show({
+        (toast.current as any).show({
           severity: "success",
           summary: "Success",
           detail: message,

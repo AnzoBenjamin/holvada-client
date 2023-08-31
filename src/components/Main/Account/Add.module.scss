@@ -21,6 +21,7 @@
 .icons{
   display: flex;
   justify-content: center;
+  width: 100%;
   gap: 1rem;
 }
 
@@ -94,7 +95,9 @@
 
 .btn-container{
   grid-column: 1/-1;
+  display: flex;
   justify-content: center;
+  width: 100%;
 }
 .input {
   padding: 0.25rem 1rem;
@@ -155,6 +158,5 @@
   .order-details {
     height: 40vh;
   }
-  .icons{
-  }
+
 }

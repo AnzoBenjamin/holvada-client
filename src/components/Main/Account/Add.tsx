@@ -51,8 +51,6 @@ export const Add: React.FC = () => {
   const [totalLessons, setTotalLessons] = useState<number>(0);
 
   const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState("");
-  const [error, setError] = useState("");
 
   const [people, setPeople] = useState([{ name: "", age: "" }]);
 
@@ -85,15 +83,51 @@ export const Add: React.FC = () => {
     setPeople(newPeople);
   };
 
-  const accept = async() => {
-    toast.current.show({
+  const accept = async () => {
+    (toast.current as any).show({
       severity: "info",
       summary: "Confirmed",
       detail: "You have accepted",
       life: 3000,
     });
-    if (selectedChild && selectedParent) {
-      setError("")
+    if (!selectedParent) {
+      (toast.current as any).show({
+        severity: "error",
+        summary: "Error",
+        detail: "Lesson group cannot be empty",
+        life: 3000,
+      });
+      return;
+    }
+
+    if (!selectedChild) {
+      (toast.current as any).show({
+        severity: "error",
+        summary: "Error",
+        detail: "Lesson type cannot be empty",
+        life: 3000,
+      });
+      return;
+    }
+    if (!people[0].name) {
+      (toast.current as any).show({
+        severity: "error",
+        summary: "Error",
+        detail: "You need at least one student name",
+        life: 3000,
+      });
+      return;
+    }
+    if (!people[0].age) {
+      (toast.current as any).show({
+        severity: "error",
+        summary: "Error",
+        detail: "You need at least one student age",
+        life: 3000,
+      });
+      return;
+    }
+    if (selectedChild && selectedParent && people[0].name && people[0].age) {
       const email = currentUser?.email || "";
 
       if (email) {
@@ -118,7 +152,12 @@ export const Add: React.FC = () => {
           };
 
           await addDoc(transactionsCollectionRef, transactionData); // Create a new document in the subcollection
-          setMessage("Successfully scheduled");
+          (toast.current as any).show({
+            severity: "success",
+            summary: "Success",
+            detail: "Succesfully added an new entry",
+            life: 3000,
+          });
           setSelectedChild(null);
           setSelectedParent(null);
           setTotalLessons(0);
@@ -127,10 +166,7 @@ export const Add: React.FC = () => {
           setTimeDateTwo(dayjs(new Date()));
           setPeople([{ name: "", age: "" }]);
         } catch (error) {
-          setMessage("")
-          setError(error.code)
         } finally {
-          setMessage("");
           setLoading(false);
         }
       }
@@ -138,7 +174,7 @@ export const Add: React.FC = () => {
   };
 
   const reject = () => {
-    toast.current.show({
+    (toast.current as any).show({
       severity: "warn",
       summary: "Rejected",
       detail: "You have rejected",
@@ -288,27 +324,6 @@ export const Add: React.FC = () => {
   }, [timeDateOne, people]);
 
 
-  useEffect(()=>{
-    if (error && !message) {
-      if (toast.current) {
-        toast.current.show({
-          severity: "error",
-          summary: "Error",
-          detail: error,
-          life: 3000,
-        });
-      }
-    } else if (message && !error) {
-      if (toast.current) {
-        toast.current.show({
-          severity: "success",
-          summary: "Success",
-          detail: message,
-          life: 3000,
-        });
-      }
-    }
-  },[confirm1])
   return (
     <main className={classes.main}>
       <div className={classes.add}>
@@ -438,6 +453,7 @@ export const Add: React.FC = () => {
             onClick={confirm1}
             icon="pi pi-check"
             label="Confirm Order"
+            disabled={loading}
             style={{ backgroundColor: "#184751" }}
           ></Button>
         </div>
@@ -456,13 +472,10 @@ export const Add: React.FC = () => {
           <h4>Total Amount</h4>
           <p>{totalAmount}</p>
         </div>
-        <Button
-          className={classes.proceed}
-          type="submit"
-          disabled={false}
-        >Proceed to payment</Button>
+        <Button className={classes.proceed} type="submit" disabled={false}>
+          Proceed to payment
+        </Button>
       </div>
-      {message && <p>{message}</p>}
     </main>
   );
 };

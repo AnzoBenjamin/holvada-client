@@ -1,7 +1,6 @@
 import { useRef, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "../../UI/Button";
-import Input from "../../UI/Input";
 import { Form } from "./Form";
 import { useAuth } from "../../store/auth-context";
 import classes from "./Login.module.scss";
@@ -38,11 +37,10 @@ const Login = () => {
 
   const linkItems = ["Signup", "Forgot-password"];
 
-
-  useEffect(()=>{
+  useEffect(() => {
     if (error && !message) {
       if (toast.current) {
-        toast.current.show({
+        (toast.current as any).show({
           severity: "error",
           summary: "Error",
           detail: error,
@@ -51,7 +49,7 @@ const Login = () => {
       }
     } else if (message && !error) {
       if (toast.current) {
-        toast.current.show({
+        (toast.current as any).show({
           severity: "success",
           summary: "Success",
           detail: message,
@@ -59,13 +57,13 @@ const Login = () => {
         });
       }
     }
-  },[loginHandler])
+  }, [loginHandler]);
   return (
     <Form>
       <FormHeader linkContent={linkItems} />
       <form className={classes["form-login"]} onSubmit={loginHandler}>
         <h2>Login</h2>
-        {(error || message) && <Toast ref={toast}/>}
+        {(error || message) && <Toast ref={toast} />}
 
         <TextField type="email" inputRef={emailRef} label="Email" />
         <TextField type="password" inputRef={passwordRef} label="Password" />
