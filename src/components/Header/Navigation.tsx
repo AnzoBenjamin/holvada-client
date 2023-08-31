@@ -63,7 +63,7 @@ const Navigation: React.FC<NavigationProps> = ({
 
             <motion.div variants={reveal} className={classes.btn}>
               {currentUser ? (
-                <Link to={"/dashboard/add"} className={styles.btn}>Account</Link>
+                <Link to={"/account/add"} className={styles.btn}>Account</Link>
               ) : (
                 <Link to={"/signup"} className={styles.btn}>Join Us</Link>
               )}
@@ -80,7 +80,7 @@ const Navigation: React.FC<NavigationProps> = ({
           <motion.div className={classes["nav__left"]}>
             <motion.div variants={reveal} className={classes.btn}>
                 {currentUser ? (
-                  <Link to={"/dashboard/add"} className={styles.btn}>Account</Link>
+                  <Link to={"/account/add"} className={styles.btn}>Account</Link>
                 ) : (
                   <Link to={"/signup"} className={styles.btn}>Join Us</Link>
                 )}

@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Form } from "./Form";
 import Button from "../../UI/Button";
@@ -7,6 +7,7 @@ import { useAuth } from "../../store/auth-context";
 import FormHeader from "./FormHeader";
 import { MapContainer } from "react-leaflet";
 import { TextField } from "@mui/material";
+import { Toast } from "primereact/toast";
 import Map from "../Map/Map";
 
 const Signup = () => {
@@ -23,6 +24,8 @@ const Signup = () => {
   const [message, setMessage] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
   const [location, setLocation] = useState<[number, number] | null>(null);
+  const toast = useRef(null);
+
   const navigate = useNavigate();
   const { signUp } = useAuth();
 
@@ -67,6 +70,7 @@ const Signup = () => {
           info.apartmentNo
         );
       setMessage("Success, you are being redirected");
+
       navigate("/verification");
     } catch (error: any) {
       setMessage("");
@@ -82,14 +86,35 @@ const Signup = () => {
 
   const linkItems = ["Login"];
 
+  useEffect(() => {
+    if (error && !message) {
+      if (toast.current) {
+        toast.current.show({
+          severity: "error",
+          summary: "Error",
+          detail: error,
+          life: 3000,
+        });
+      }
+    } else if (message && !error) {
+      if (toast.current) {
+        toast.current.show({
+          severity: "success",
+          summary: "Success",
+          detail: message,
+          life: 3000,
+        });
+      }
+    }
+  }, [signupHandler, error]);
   return (
     <>
       <FormHeader linkContent={linkItems} />
       <Form>
         <form className={classes["form-signup"]} onSubmit={signupHandler}>
           <h2>Signup</h2>
-          {error && <p className={classes.error}>{error}</p>}
-          {message && <p className={classes.message}>{message}</p>}
+          {(error || message) && <Toast ref={toast} />}
+
           <div className={classes["contact-info"]}>
             <TextField
               type="email"
@@ -128,8 +153,18 @@ const Signup = () => {
             </MapContainer>
           </div>
           <div className={classes["additional-content"]}>
-            <TextField inputRef={streetRef} type="text" placeholder="Optional" label="Street"/>
-            <TextField inputRef={laneRef} type="text" placeholder="Optional" label="Lane"/>
+            <TextField
+              inputRef={streetRef}
+              type="text"
+              placeholder="Optional"
+              label="Street"
+            />
+            <TextField
+              inputRef={laneRef}
+              type="text"
+              placeholder="Optional"
+              label="Lane"
+            />
             <TextField
               inputRef={apartmentBlockRef}
               type="text"

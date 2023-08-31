@@ -9,6 +9,7 @@ import {
 import { useAuth } from "../../../store/auth-context";
 import { db } from "../../../config/firebase";
 import ItemCard from "./ItemCard";
+import Loading from "../../../UI/Loading";
 
 export const Completed: React.FC = () => {
   const [transactions, setTransactions] = useState<DocumentData[]>([]);
@@ -49,29 +50,34 @@ export const Completed: React.FC = () => {
   }, []);
 
   if (isLoading) {
-    return <div>Loading...</div>; // Render a loading screen while data is being fetched
+    return <Loading/>
   }
 
-  return (
-    <>
-      {transactions.map((transaction) => {
-        const itemCards = [];
+  if (transactions.length > 0) {
+    return (
+      <>
+        {transactions.map((transaction) => {
+          const itemCards = [];
 
-        for (let i = 0; i < transaction.studentInformation.length; i++) {
-          itemCards.push(
-            <ItemCard
-              item={transaction.group}
-              timeDateOne={transaction.timeDateOne}
-              category={transaction.type}
-              timeDateTwo={transaction.timeDateTwo}
-              name={transaction.studentInformation[i].name}
-              key={i}
-            />
-          );
-        }
+          for (let i = 0; i < transaction.studentInformation.length; i++) {
+            itemCards.push(
+              <ItemCard
+                item={transaction.group}
+                timeDateOne={transaction.timeDateOne}
+                category={transaction.type}
+                timeDateTwo={transaction.timeDateTwo}
+                name={transaction.studentInformation[i].name}
+                key={i}
+              />
+            );
+          }
 
-        return itemCards;
-      })}
-    </>
-  );
+          return itemCards;
+        })}
+      </>
+    );
+  }
+  else {
+    return <div>No content available</div>
+  }
 };

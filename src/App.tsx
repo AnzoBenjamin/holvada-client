@@ -12,12 +12,12 @@ import Signup from "./components/Form/Signup";
 import { Verification } from "./components/Verification";
 import { PrivateRoute } from "./PrivateRoute";
 import { ForgotPassword } from "./components/Form/ForgotPassword";
-import { Add } from "./components/Main/Dashboard/Add";
-import { Upcoming } from "./components/Main/Dashboard/Upcoming";
-import { Pending } from "./components/Main/Dashboard/Pending";
-import { Completed } from "./components/Main/Dashboard/Completed";
-import AccountLayout from "./components/Main/Dashboard/AccountLayout";
-import AccountDetails from "./components/Main/Dashboard/AccountDetails";
+import { Add } from "./components/Main/Account/Add";
+import { Upcoming } from "./components/Main/Account/Upcoming";
+import { Pending } from "./components/Main/Account/Pending";
+import { Completed } from "./components/Main/Account/Completed";
+import AccountLayout from "./components/Main/Account/AccountLayout";
+import AccountDetails from "./components/Main/Account/AccountDetails";
 function App() {
   const [isLoading, setIsLoading] = useState(true);
 

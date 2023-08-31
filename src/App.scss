@@ -1,4 +1,8 @@
 @import "./scss/utils/variables";
+@import 'primereact/resources/themes/saga-blue/theme.css';
+@import 'primereact/resources/primereact.min.css';
+@import 'primeicons/primeicons.css';
+
 a {
   cursor: pointer;
   text-decoration: none;

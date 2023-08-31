@@ -23,7 +23,7 @@ const Learning: React.FC = () => {
       <Header
         navItems={navItems}
         navLinks={navLinks}
-        navHeading="Learn"
+        navHeading="Holvada"
         HeroElement={LearnHero}
         otherClasses={classes.hero}
         animationStart={secondaryAnimationStart}

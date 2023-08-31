@@ -1,3 +1,16 @@
+@import '../../../scss/utils/variables';
+
 .hero{
-    z-index: 0;
+    background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url("/events.jpg");
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    &-text{
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 }

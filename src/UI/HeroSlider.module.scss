@@ -72,6 +72,7 @@
   padding: 1rem 1.2rem;
   color: $color-primary-light;
 }
+
 .heading-tertiary {
   padding: 0.9rem 1.2rem;
   box-shadow: 0 0 0 1px $color-primary-dark;
@@ -117,12 +118,17 @@
   }
 }
 .btn {
+  position: relative;
   text-transform: capitalize;
   font-size: $fs-400;
   background-color: $color-tertiary;
   padding: 0.9rem 1.1rem;
   font-family: "Cera-light", sans-serif;
   box-shadow: 0 1px 1rem $color-tertiary;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   &:hover {
     background-color: $color-tertiary-dark;
   }

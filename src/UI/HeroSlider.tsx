@@ -35,7 +35,7 @@ const Slide: React.FC<SlideProps> = ({
     else if (currentPair === 2) setLink("chess");
     else if (currentPair === 3) setLink("language");
     else if (currentPair === 4) setLink("music");
-  }, [currentPair])
+  }, [currentPair]);
   return (
     <div
       key={index}
@@ -44,7 +44,7 @@ const Slide: React.FC<SlideProps> = ({
       }`}
       style={{
         backgroundImage: `linear-gradient(rgba(0,0,0,0.85),rgba(0,0,0,0.85)) ,url(${imageURL})`,
-        backgroundPosition: 'center',
+        backgroundPosition: "center",
       }}
     >
       <div className={classes["hero-slider__text"]}>

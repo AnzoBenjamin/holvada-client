@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import classes from "./Add.module.scss";
 import { doc, collection, addDoc } from "firebase/firestore";
 import { LocalizationProvider } from "@mui/x-date-pickers";
@@ -7,8 +7,13 @@ import { db } from "../../../config/firebase";
 import { useAuth } from "../../../store/auth-context";
 import { v4 } from "uuid";
 import { DateTimePicker } from "@mui/x-date-pickers";
-import Button from "../../../UI/Button";
 import dayjs from "dayjs";
+import AddIcon from "@mui/icons-material/Add";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { ConfirmDialog, confirmDialog } from "primereact/confirmdialog";
+import RemoveIcon from "@mui/icons-material/Remove";
+import { Toast } from "primereact/toast";
+import { Button } from "primereact/button";
 
 import {
   FormControl,
@@ -16,6 +21,7 @@ import {
   Select,
   MenuItem,
   TextField,
+  Button as Btn,
 } from "@mui/material";
 
 interface Option {
@@ -23,10 +29,22 @@ interface Option {
   value: string;
   children?: Option[];
 }
-
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: "#90d0e3", // Your custom primary color
+    },
+    secondary: {
+      main: "#184751", // Your custom secondary color
+    },
+    // ... other palette settings
+  },
+});
 export const Add: React.FC = () => {
   const [selectedParent, setSelectedParent] = useState<Option | null>(null);
   const [selectedChild, setSelectedChild] = useState<Option | null>(null);
+  const toast = useRef(null);
+
   const [timeDateOne, setTimeDateOne] = useState(dayjs(new Date()));
   const [timeDateTwo, setTimeDateTwo] = useState(dayjs(new Date()));
   const [totalAmount, setTotalAmount] = useState<number>(0);
@@ -34,6 +52,8 @@ export const Add: React.FC = () => {
 
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
+  const [error, setError] = useState("");
+
   const [people, setPeople] = useState([{ name: "", age: "" }]);
 
   const handleParentSelect = (option: Option | null) => {
@@ -49,16 +69,91 @@ export const Add: React.FC = () => {
     setPeople([...people, { name: "", age: "" }]);
   };
 
-  const handleRemovePerson = (index: any) => {
+  const handleRemovePerson = () => {
     const newPeople = [...people];
-    newPeople.splice(index, 1);
+    newPeople.splice(-1);
     setPeople(newPeople);
   };
 
-  const handleInputChange = (index: number, field: string, value: string | number) => {
+  const handleInputChange = (
+    index: number,
+    field: string,
+    value: string | number
+  ) => {
     const newPeople = [...people];
     (newPeople[index] as { [key: string]: string | number })[field] = value;
     setPeople(newPeople);
+  };
+
+  const accept = async() => {
+    toast.current.show({
+      severity: "info",
+      summary: "Confirmed",
+      detail: "You have accepted",
+      life: 3000,
+    });
+    if (selectedChild && selectedParent) {
+      setError("")
+      const email = currentUser?.email || "";
+
+      if (email) {
+        try {
+          setLoading(true);
+          const userDocRef = doc(db, "users", email);
+          const transactionsCollectionRef = collection(
+            userDocRef,
+            "transactions"
+          ); // Reference the subcollection
+          const transactionData = {
+            id: v4(),
+            group: selectedParent.value,
+            type: selectedChild.value,
+            timeDateOne: timeDateOne.toISOString(),
+            timeDateTwo: timeDateTwo.toISOString(),
+            studentInformation: people,
+            amount: totalAmount,
+            totalLessons: totalLessons,
+            paid: false,
+            attended: false,
+          };
+
+          await addDoc(transactionsCollectionRef, transactionData); // Create a new document in the subcollection
+          setMessage("Successfully scheduled");
+          setSelectedChild(null);
+          setSelectedParent(null);
+          setTotalLessons(0);
+          setTotalAmount(0);
+          setTimeDateOne(dayjs(new Date()));
+          setTimeDateTwo(dayjs(new Date()));
+          setPeople([{ name: "", age: "" }]);
+        } catch (error) {
+          setMessage("")
+          setError(error.code)
+        } finally {
+          setMessage("");
+          setLoading(false);
+        }
+      }
+    }
+  };
+
+  const reject = () => {
+    toast.current.show({
+      severity: "warn",
+      summary: "Rejected",
+      detail: "You have rejected",
+      life: 3000,
+    });
+  };
+
+  const confirm1 = () => {
+    confirmDialog({
+      message: "Are you sure you want to proceed?",
+      header: "Confirmation",
+      icon: "pi pi-exclamation-triangle",
+      accept,
+      reject,
+    });
   };
 
   const options: Option[] = [
@@ -179,62 +274,41 @@ export const Add: React.FC = () => {
   ];
   const { currentUser } = useAuth();
 
-  const buttonHandler = async () => {
-    if (selectedChild && selectedParent) {
-      const email = currentUser?.email || "";
-
-      if (email) {
-        try {
-          setLoading(true);
-          const userDocRef = doc(db, "users", email);
-          const transactionsCollectionRef = collection(
-            userDocRef,
-            "transactions"
-          ); // Reference the subcollection
-          const transactionData = {
-            id: v4(),
-            group: selectedParent.value,
-            type: selectedChild.value,
-            timeDateOne: timeDateOne.toISOString(),
-            timeDateTwo: timeDateTwo.toISOString(),
-            studentInformation: people,
-            amount: totalAmount,
-            totalLessons: totalLessons,
-            paid: false,
-            attended: false,
-          };
-
-          await addDoc(transactionsCollectionRef, transactionData); // Create a new document in the subcollection
-          setMessage("Successfully scheduled");
-          setSelectedChild(null);
-          setSelectedParent(null);
-          setTotalLessons(0);
-          setTotalAmount(0);
-          setTimeDateOne(dayjs(new Date()))
-          setTimeDateTwo(dayjs(new Date()))
-          setPeople([{ name: "", age: "" }])
-        } catch (error) {
-          console.log("Error adding entry:", error);
-        } finally {
-          setMessage("");
-          setLoading(false);
-        }
-      }
-    }
-  };
-
   useEffect(() => {
     people.map((value, index) => {
-      if (value) {
+      if (value.name != "" && value.age != "") {
         setTotalLessons((index + 1) * 8);
         setTotalAmount((index + 1) * 400000);
       }
     });
-    if (!people) {
+    if (people[0].name == "" || people[0].age == "") {
       setTotalLessons(0);
       setTotalAmount(0);
     }
   }, [timeDateOne, people]);
+
+
+  useEffect(()=>{
+    if (error && !message) {
+      if (toast.current) {
+        toast.current.show({
+          severity: "error",
+          summary: "Error",
+          detail: error,
+          life: 3000,
+        });
+      }
+    } else if (message && !error) {
+      if (toast.current) {
+        toast.current.show({
+          severity: "success",
+          summary: "Success",
+          detail: message,
+          life: 3000,
+        });
+      }
+    }
+  },[confirm1])
   return (
     <main className={classes.main}>
       <div className={classes.add}>
@@ -327,39 +401,46 @@ export const Add: React.FC = () => {
               className={classes["input-field"]}
               onChange={(e) => handleInputChange(index, "age", e.target.value)}
             />
-            {
-
-              /*
+            {/*
               {index > 0 && (
                 <button onClick={() => handleRemovePerson(index)}>-</button>
                 )}
-                */
-          }
+                */}
           </div>
         ))}
-        <div className={classes.icons}>
-          <img
-            src="/plus.png"
-            alt="Plus"
-            className={classes.plus}
-            onClick={handleAddPerson}
-          />
+        <ThemeProvider theme={theme}>
+          <div className={classes.icons}>
+            <Btn
+              variant="outlined"
+              startIcon={<AddIcon />}
+              color={"secondary"}
+              onClick={handleAddPerson}
+            >
+              Add
+            </Btn>
 
-          <img
-            src="/minus.png"
-            alt="Plus"
-            className={classes.plus}
-            onClick={handleRemovePerson}
-          />
+            <Btn
+              variant="contained"
+              disabled={people.length <= 1} // Disable if there's only one or zero items
+              startIcon={<RemoveIcon />}
+              color={"secondary"}
+              onClick={handleRemovePerson}
+            >
+              Remove
+            </Btn>
+          </div>
+        </ThemeProvider>
+
+        <Toast ref={toast} />
+        <ConfirmDialog />
+        <div className={classes["btn-container"]}>
+          <Button
+            onClick={confirm1}
+            icon="pi pi-check"
+            label="Confirm Order"
+            style={{ backgroundColor: "#184751" }}
+          ></Button>
         </div>
-
-        <button
-          className={classes.btn}
-          disabled={loading}
-          onClick={buttonHandler}
-        >
-          Add
-        </button>
       </div>
       <div className={classes["order-details"]}>
         <h3>Order details</h3>
@@ -378,9 +459,8 @@ export const Add: React.FC = () => {
         <Button
           className={classes.proceed}
           type="submit"
-          text="Proceed to payment"
           disabled={false}
-        />
+        >Proceed to payment</Button>
       </div>
       {message && <p>{message}</p>}
     </main>

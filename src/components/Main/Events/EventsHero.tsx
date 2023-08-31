@@ -1,14 +1,14 @@
 import React from "react";
-import HeroSlider from "../../../UI/HeroSlider";
-
+import classes from "./EventsHero.module.scss"
 const EventsHero: React.FC = () => {
   const HeroData = [
-    { imageURL: "events.jpg", text: "sing", tag: "sing", category: "sing"},
-    { imageURL: "events 2.jpg", text: "play", tag: "sing", category: "sing" },
-    { imageURL: "events 3.jpg", text: "sing", tag: "sing", category: "sing"},
-    { imageURL: "events 4.jpg", text: "play", tag: "sing", category: "sing" },
+    { imageURL: "events.jpg", text: "sing", tag: "sing", category: "sing" },
   ];
-  return <HeroSlider slideData={HeroData} />;
+  return <header className={classes.hero}>
+    <div className={classes["hero-text"]}>
+    <h1>Welcome to an environment where you can show what you have developed</h1>
+    </div>
+  </header>;
 };
 
 export default EventsHero;

@@ -18,7 +18,7 @@ const Events: React.FC = () => {
     <React.Fragment>
       <Header
         HeroElement={EventsHero}
-        navHeading="Events"
+        navHeading="Holvada"
         navItems={navItems}
         navLinks={navLinks}
         otherClasses={classes.hero}

@@ -56,8 +56,7 @@ const Hero: React.FC = () => {
         >
           <div className={classes["hero__text-area"]}>
             <p>
-              Join us on a transformative journey where creativity meets
-              cutting-edge technology, and let's bring your ideas to life.
+              Join us on a transformative journey to raise skilled and talented champions around the world to make dreams a reality
             </p>
           </div>
         </motion.div>

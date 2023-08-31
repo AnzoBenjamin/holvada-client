@@ -141,7 +141,7 @@ const Services = () => {
         "/music-icon.webp",
         "/chess-icon.webp",
       ],
-      link: "/performance",
+      link: "/events",
       description:
         "Unleash your creativity and explore the world of art with our diverse art services. From oil paintings that bring life to your imagination to intricately detailed pencil drawings and awe-inspiring sculptures, our art offerings cater to various artistic expressions.",
     },

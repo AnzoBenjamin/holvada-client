@@ -10,6 +10,7 @@ import ItemCard from "./ItemCard";
 import { useAuth } from "../../../store/auth-context";
 import { db } from "../../../config/firebase";
 import classes from "./Pending.module.scss";
+import Loading from "../../../UI/Loading";
 import axios from "axios";
 
 export const Pending: React.FC = () => {
@@ -91,24 +92,46 @@ export const Pending: React.FC = () => {
   }, []);
 
   if (isLoading) {
-    return <div>Loading...</div>; // Render a loading screen while data is being fetched
+    return <Loading/>
   }
 
-  return (
-    <>
+  if(transactions.length>0){
+
+    return (
+      <>
       <div className={classes.pending}>
         {transactions.map((transaction) => {
           const itemCards = [];
 
           for (let i = 0; i < transaction.studentInformation.length; i++) {
+            const dateStringOne = new Date(transaction.timeDateOne)
+            const dateStringTwo = new Date(transaction.timeDateTwo) 
+
+            const yearOne = dateStringOne.getFullYear().toLocaleString()
+            const yearTwo = dateStringTwo.getFullYear().toLocaleString()
+
+            const monthOne = dateStringOne.getMonth().toLocaleString()
+            const monthTwo = dateStringTwo.getMonth().toLocaleString()
+
+            const dayOne = dateStringOne.getDay().toLocaleString()
+            const dayTwo = dateStringTwo.getDay().toLocaleString()
+
+            const dateOne = dateStringOne.getDate().toLocaleString()
+            const dateTwo = dateStringTwo.getDate().toLocaleString()
+
+            const fullDateOne = `${yearOne} ${monthOne} ${dateOne}`
+            const fullDateTwo = `${yearTwo} ${monthTwo} ${dateTwo}`
+
+
+
             itemCards.push(
               <ItemCard
-                item={transaction.group}
-                timeDateOne={transaction.timeDateOne}
-                category={transaction.type}
-                timeDateTwo={transaction.timeDateTwo}
-                name={transaction.studentInformation[i].name}
-                key={i}
+              item={transaction.group}
+              timeDateOne={fullDateOne}
+              category={transaction.type}
+              timeDateTwo={fullDateTwo}
+              name={transaction.studentInformation[i].name}
+              key={i}
               />
             );
           }
@@ -118,4 +141,8 @@ export const Pending: React.FC = () => {
       </div>
     </>
   );
+}
+else{
+  return <div>No content available</div>
+}
 };

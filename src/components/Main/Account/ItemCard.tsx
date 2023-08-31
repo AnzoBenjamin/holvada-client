@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import classes from "./ItemCard.module.scss";
 
 interface ItemCardProps {
@@ -18,7 +18,7 @@ const ItemCard: React.FC<ItemCardProps> = ({ item, timeDateOne, timeDateTwo, cat
       </div>
       <div className={classes["text-content"]}>
         <p className={classes.date}>{timeDateOne}</p>
-        <p className={classes.date}>{timeDateTwo}</p>
+        <p className={classes.time}>{timeDateTwo}</p>
         <p className={classes.name}>{name}</p>
       </div>
       {/*

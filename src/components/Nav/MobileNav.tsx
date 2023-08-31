@@ -2,6 +2,7 @@ import React from "react";
 import classes from "./MobileNav.module.scss";
 import timesHexagon from "/times-hexagon.svg";
 import { Link } from "react-scroll";
+import { Link as BrowserLink } from "react-router-dom";
 
 interface MobileNavProps {
   isVisible: boolean;
@@ -26,7 +27,7 @@ const MobileNav: React.FC<MobileNavProps> = ({
       }`}
     >
       <div className={classes["nav__hidden--header"]}>
-        <Link to={"/"} className={classes["nav__header"]}>Holvada</Link>
+        <BrowserLink to={"/"} className={classes["nav__header"]}>Holvada</BrowserLink>
         <img
           src={timesHexagon}
           alt=""

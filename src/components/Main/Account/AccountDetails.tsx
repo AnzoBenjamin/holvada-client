@@ -1,12 +1,18 @@
 import React, { useEffect, useState, useRef } from "react";
-import { getDocs, doc, collection, query, DocumentData } from "firebase/firestore";
+import {
+  getDocs,
+  doc,
+  collection,
+  query,
+  DocumentData,
+} from "firebase/firestore";
 import { useAuth } from "../../../store/auth-context";
-import Input from "../../../UI/Input";
 import Button from "../../../UI/Button";
 import { MapContainer } from "react-leaflet";
 import Map from "../../Map/Map";
 import classes from "./AccountDetails.module.scss";
 import { db } from "../../../config/firebase";
+import { TextField } from "@mui/material";
 
 const AccountDetails: React.FC = () => {
   const emailRef = useRef<HTMLInputElement | null>(null);
@@ -27,9 +33,9 @@ const AccountDetails: React.FC = () => {
     const email = currentUser?.email || "";
     const userDocRef = doc(db, "users", email);
     const infoCollectionRef = collection(userDocRef, "info");
-    setLoading(false)
-    setError("")
-    setMessage("")
+    setLoading(false);
+    setError("");
+    setMessage("");
     try {
       const q = query(infoCollectionRef);
       const querySnapshot = await getDocs(q);
@@ -45,11 +51,7 @@ const AccountDetails: React.FC = () => {
     (async () => {
       try {
         await getUserInfo();
-        console.log(location);
-        console.log(userInfo);
-      } catch (error) {
-        console.log(error);
-      }
+      } catch (error) {}
     })();
   }, [currentUser]);
 
@@ -64,18 +66,19 @@ const AccountDetails: React.FC = () => {
       {userInfo ? (
         <div className={classes.account}>
           <form className={classes["form-details"]} onSubmit={changeHandler}>
-            <h2>Account details</h2>
             {error && <p className={classes.error}>{error}</p>}
             {message && <p className={classes.message}>{message}</p>}
             <div className={classes["contact-info"]}>
-              <Input
+              <TextField
                 type="email"
                 ref={emailRef}
-                placeholder={currentUser?.email || "Email"}
+                label={"Email"}
+                placeholder={currentUser?.email || ""}
               />
-              <Input
+              <TextField
                 type="tel"
                 ref={phoneRef}
+                label={"Phone Number"}
                 placeholder={userInfo.telephoneNumber}
               />
             </div>
@@ -90,31 +93,29 @@ const AccountDetails: React.FC = () => {
               </MapContainer>
             </div>
             <div className={classes["additional-content"]}>
-              <Input
+              <TextField
                 ref={streetRef}
                 type="text"
-                placeholder={userInfo.street ? userInfo.street : "Street"}
+                label="Street"
+                placeholder={userInfo.street}
               />
-              <Input
+              <TextField
                 ref={laneRef}
                 type="text"
-                placeholder={userInfo.lane ? userInfo.lane : "Lane"}
+                label="Lane"
+                placeholder={userInfo.lan}
               />
-              <Input
+              <TextField
                 ref={apartmentBlockRef}
                 type="text"
-                placeholder={
-                  userInfo.apartmentBlock
-                    ? userInfo.apartmentBlock
-                    : "Apartment Block"
-                }
+                label="Apartment Block"
+                placeholder={userInfo.apartmentBlock}
               />
-              <Input
+              <TextField
                 ref={apartmentNoRef}
                 type="text"
-                placeholder={
-                  userInfo.apartmentNo ? userInfo.apartmentNo : "Apartment No"
-                }
+                label="Apartment No"
+                placeholder={userInfo.apartmentNo}
               />
             </div>
             <Button
