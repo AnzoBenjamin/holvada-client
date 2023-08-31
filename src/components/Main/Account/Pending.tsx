@@ -113,8 +113,6 @@ export const Pending: React.FC = () => {
             const monthOne = dateStringOne.getMonth().toLocaleString()
             const monthTwo = dateStringTwo.getMonth().toLocaleString()
 
-            const dayOne = dateStringOne.getDay().toLocaleString()
-            const dayTwo = dateStringTwo.getDay().toLocaleString()
 
             const dateOne = dateStringOne.getDate().toLocaleString()
             const dateTwo = dateStringTwo.getDate().toLocaleString()
