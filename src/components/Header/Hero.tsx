@@ -3,6 +3,7 @@ import styles from "../../scss/utils/_helpers.module.scss";
 import classes from "./Hero.module.scss";
 import { motion } from "framer-motion";
 import { Link } from "react-scroll";
+import { Button } from "primereact/button";
 import { animationStart, reveal } from "../../utils/animation";
 
 const Hero: React.FC = () => {
@@ -67,15 +68,14 @@ const Hero: React.FC = () => {
           transition={{ delay: animationStart + 1.3, duration: 0.5 }}
           className={classes["hero__btn-area"]}
         >
-          <Link smooth to="footer" className={classes["btn-primary"]}>
-            Contact
+          <Link smooth to="footer">
+            <Button label="Contact"/>
           </Link>
           <Link
             smooth
             to="section-services"
-            className={classes["btn-secondary"]}
           >
-            Services
+            <Button label="Services" className="p-button-outlined" />
           </Link>
         </motion.div>
       </motion.div>

@@ -1,7 +1,8 @@
 import classes from "./LearningPrices.module.scss";
 import styles from "../../../scss/utils/_helpers.module.scss";
 import Card from "../../../UI/Card";
-import { CheckmarkCircle, CloseCircle } from "react-ionicons";
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import CancelIcon from '@mui/icons-material/Cancel';
 
 const LearningPrices = () => {
   return (
@@ -21,15 +22,15 @@ const LearningPrices = () => {
           </header>
           <ul className={classes.list}>
             <li className={classes["list-item"]}>
-              <CheckmarkCircle color={"#90d0e3"} />
+              <CheckCircleIcon />
               <span> Learning equipment provided if necessary</span>
             </li>
             <li className={classes["list-item"]}>
-              <CheckmarkCircle color={"#90d0e3"} />
+              <CheckCircleIcon />
               <span>Online inquiries</span>
             </li>
             <li className={classes["list-item"]}>
-              <CloseCircle color={"#E3A390"} />
+              <CancelIcon />
               <span></span>
             </li>
           </ul>
@@ -44,15 +45,15 @@ const LearningPrices = () => {
           </header>
           <ul className={classes.list}>
             <li className={classes["list-item"]}>
-              <CheckmarkCircle color={"#90d0e3"} />
+              <CheckCircleIcon />
               <span>Learning equipment provided if necessary</span>
             </li>
             <li className={classes["list-item"]}>
-              <CheckmarkCircle color={"#90d0e3"} />
+              <CheckCircleIcon />
               <span>Online inquiries</span>
             </li>
             <li className={classes["list-item"]}>
-              <CheckmarkCircle color={"#90d0e3"} />
+              <CheckCircleIcon />
               <span>50% discount</span>
             </li>
           </ul>
