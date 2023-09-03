@@ -1,7 +1,7 @@
 @import "./scss/utils/variables";
-@import 'primereact/resources/themes/saga-blue/theme.css';
-@import 'primereact/resources/primereact.min.css';
-@import 'primeicons/primeicons.css';
+@import "primereact/resources/themes/saga-blue/theme.css";
+@import "primereact/resources/primereact.css";
+@import "primeicons/primeicons.css";
 
 a {
   cursor: pointer;
@@ -40,7 +40,7 @@ html::-webkit-scrollbar-thumb {
   background: $color-secondary;
   border-radius: 10px;
 }
-.leaflet-container{
+.leaflet-container {
   height: 10rem;
 }
 @media (min-width: 470px) {
@@ -51,7 +51,7 @@ html::-webkit-scrollbar-thumb {
 @media (min-width: 1000px) {
   section {
   }
-  .leaflet-container{
+  .leaflet-container {
     height: 10rem;
   }
 }

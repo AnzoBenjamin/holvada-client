@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { Button } from "primereact/button";
+import { Carousel } from "primereact/carousel";
+import { Tag } from "primereact/tag";
 import classes from "./Services.module.scss";
 import styles from "../../scss/utils/_helpers.module.scss";
 
@@ -24,7 +27,9 @@ const ServiceItem: React.FC<ServiceItemProps> = ({
   description,
 }) => {
   const [isFlipped, setisFlipped] = useState(false);
-  const [isMobile, setIsMobile] = useState<boolean>();
+  const [isMobile, setIsMobile] = useState<boolean>(() => {
+    return window.innerWidth <= 768;
+  });
 
   const handleFlip = () => {
     setisFlipped(!isFlipped);
@@ -55,9 +60,9 @@ const ServiceItem: React.FC<ServiceItemProps> = ({
       className={`${classes["section-services__area--item"]} ${
         isFlipped ? classes.flipped : ""
       } ${otherClass}`}
-      onClick={isMobile? handleFlip: undefined}
-      onMouseEnter={!isMobile?  handleFlip: undefined}
-      onMouseLeave={!isMobile? handleFlip: undefined}
+      onClick={isMobile ? handleFlip : undefined}
+      onMouseEnter={!isMobile ? handleFlip : undefined}
+      onMouseLeave={!isMobile ? handleFlip : undefined}
     >
       <div className={`${classes["section-services__area--front"]}`}>
         <figure className={classes["section-services__area--figure"]}>
@@ -116,21 +121,6 @@ const Services = () => {
         "Whether you need a mobile application that puts your business in the hands of your customers or a robust software system that powers your operations, our team of experts has you covered. From frontend development that creates captivating user interfaces to backend development that ensures seamless functionality, we deliver tailored software solutions that meet your unique needs.",
     },
     {
-      imageClass: classes.art,
-      bgClass: classes["art__bg"],
-      title: "Learning",
-      items: ["Language", "Art", "Music", "Chess"],
-      itemIcon: [
-        "/language-icon.webp",
-        "/art-icon.webp",
-        "/music-icon.webp",
-        "/chess-icon.webp",
-      ],
-      link: "/learn",
-      description:
-        "Unleash your creativity and explore the world of art with our diverse art services. From oil paintings that bring life to your imagination to intricately detailed pencil drawings and awe-inspiring sculptures, our art offerings cater to various artistic expressions.",
-    },
-    {
       imageClass: classes.performance,
       bgClass: classes["performance__bg"],
       title: "Events",
@@ -146,15 +136,115 @@ const Services = () => {
         "Unleash your creativity and explore the world of art with our diverse art services. From oil paintings that bring life to your imagination to intricately detailed pencil drawings and awe-inspiring sculptures, our art offerings cater to various artistic expressions.",
     },
   ];
+  const learningItems = [
+    {
+      imageClass: classes.music,
+      bgClass: classes["music__bg"],
+      title: "Music",
+      items: ["Guitar", "Violin", "Vocal training", "Piano"],
+      itemIcon: [
+        "/music-icon.webp",
+        "/music-icon.webp",
+        "/music-icon.webp",
+        "/music-icon.webp",
+      ],
+      link: "/events",
+      description:
+        "Unleash your creativity and explore the world of art with our diverse art services. From oil paintings that bring life to your imagination to intricately detailed pencil drawings and awe-inspiring sculptures, our art offerings cater to various artistic expressions.",
+    },
+    {
+      imageClass: classes.chess,
+      bgClass: classes["chess__bg"],
+      title: "Chess",
+      items: ["Beginner", "Intermediate", "Advanced", "For Children"],
+      itemIcon: [
+        "/chess-icon.webp",
+        "/chess-icon.webp",
+        "/chess-icon.webp",
+        "/chess-icon.webp",
+      ],
+      link: "/events",
+      description:
+        "Unleash your creativity and explore the world of art with our diverse art services. From oil paintings that bring life to your imagination to intricately detailed pencil drawings and awe-inspiring sculptures, our art offerings cater to various artistic expressions.",
+    },
+    {
+      imageClass: classes.art,
+      bgClass: classes["art__bg"],
+      title: "Art",
+      items: [
+        "Pencil Drawings",
+        "Oil Paintings",
+        "Watercolors",
+        "Acrylic Paintings",
+      ],
+      itemIcon: [
+        "/art-icon.webp",
+        "/art-icon.webp",
+        "/art-icon.webp",
+        "/art-icon.webp",
+      ],
+      link: "/events",
+      description:
+        "Unleash your creativity and explore the world of art with our diverse art services. From oil paintings that bring life to your imagination to intricately detailed pencil drawings and awe-inspiring sculptures, our art offerings cater to various artistic expressions.",
+    },
+    {
+      imageClass: classes.tech,
+      bgClass: classes["tech__bg"],
+      title: "Tech",
+      items: ["Code", "Scratch", "Computer Skills"],
+      itemIcon: [
+        "/language-icon.webp",
+        "/art-icon.webp",
+        "/music-icon.webp",
+        "/chess-icon.webp",
+      ],
+      link: "/events",
+      description:
+        "Unleash your creativity and explore the world of art with our diverse art services. From oil paintings that bring life to your imagination to intricately detailed pencil drawings and awe-inspiring sculptures, our art offerings cater to various artistic expressions.",
+    },
+    {
+      imageClass: classes.language,
+      bgClass: classes["language__bg"],
+      title: "Language",
+      items: ["English", "Kiswahili", "French"],
+      itemIcon: [
+        "/language-icon.webp",
+        "/art-icon.webp",
+        "/music-icon.webp",
+        "/chess-icon.webp",
+      ],
+      link: "/events",
+      description:
+        "Unleash your creativity and explore the world of art with our diverse art services. From oil paintings that bring life to your imagination to intricately detailed pencil drawings and awe-inspiring sculptures, our art offerings cater to various artistic expressions.",
+    },
+  ];
 
+  const responsiveOptions = [
+    {
+      breakpoint: "1000px",
+      numVisible: 1,
+      numScroll: 1,
+    },
+    {
+      breakpoint: "768px",
+      numVisible: 2,
+      numScroll: 1,
+    },
+    {
+      breakpoint: "576px",
+      numVisible: 1,
+      numScroll: 1,
+    },
+  ];
   return (
     <section className={classes["section-services"]} id="section-services">
       <h3 className={styles["heading-tertiary"]}>Services</h3>
       <h2 className={styles["heading-secondary"]}>
         Comprehensive Solutions Tailored to Your Needs
       </h2>
+      {/*
       <div className={classes["section-services__area"]}>
-        {serviceItems.map((item, index) => (
+        serviceItems.map((item, index) => (
           <ServiceItem
             key={index}
             imageClass={item.imageClass}
@@ -166,48 +256,64 @@ const Services = () => {
             link={item.link}
             description={item.description}
           />
-        ))}
+
       </div>
-      <p className={classes.note}>All plans include the following</p>
-      <div className={classes.common}>
-        <div className={classes["common__area"]}>
-          <div className={classes["common__area--item"]}>
-            {" "}
-            <h4 className={classes["common__area--heading"]}>
+        ))*/}
+      <div>
+        <Carousel<div>
+          value={learningItems}
+          numVisible={3}
+          numScroll={3}
+          responsiveOptions={responsiveOptions}
+          className={classes["custom-carousel"]}
+          circular
+          autoplayInterval={3000}
+          itemTemplate={ServiceItem}
+        />
+      </div>
+      <div>
+        <p className={classes.note}>All plans include the following</p>
+        <div className={classes.common}>
+          <div className={classes["common__area"]}>
+            <div className={classes["common__area--item"]}>
               {" "}
-              Online collaboration
-              <img src="/online.webp" alt="" className={classes.icon} />{" "}
-            </h4>
-            <p>
-              With our powerful online collaboration feature, holvada enables
-              you to work together seamlessly with your team, no matter where
-              you are located.
-            </p>
-          </div>
-          <div className={classes["common__area--item"]}>
-            {" "}
-            <h4 className={classes["common__area--heading"]}>
+              <h4 className={classes["common__area--heading"]}>
+                {" "}
+                Online collaboration
+                <img src="/online.webp" alt="" className={classes.icon} />{" "}
+              </h4>
+              <p>
+                With our powerful online collaboration feature, holvada enables
+                you to work together seamlessly with your team, no matter where
+                you are located.
+              </p>
+            </div>
+            <div className={classes["common__area--item"]}>
               {" "}
-              7 days a week availability
-              <img src="/available.webp" alt="" className={classes.icon} />
-            </h4>
-            <p>
-              We're proud to offer our services seven days a week, ensuring that
-              our expertise and assistance are available to you every day.
-            </p>
-          </div>
-          <div className={classes["common__area--item"]}>
-            {" "}
-            <h4 className={classes["common__area--heading"]}>
+              <h4 className={classes["common__area--heading"]}>
+                {" "}
+                7 days a week availability
+                <img src="/available.webp" alt="" className={classes.icon} />
+              </h4>
+              <p>
+                We're proud to offer our services seven days a week, ensuring
+                that our expertise and assistance are available to you every
+                day.
+              </p>
+            </div>
+            <div className={classes["common__area--item"]}>
               {" "}
-              Full Refund
-              <img src="/refund.webp" alt="" className={classes.icon} />{" "}
-            </h4>
-            <p>
-              If you find yourself dissatisfied with any product or service
-              you've purchased from our website, you can request a refund within
-              7 days from the date of purchase.
-            </p>
+              <h4 className={classes["common__area--heading"]}>
+                {" "}
+                Full Refund
+                <img src="/refund.webp" alt="" className={classes.icon} />{" "}
+              </h4>
+              <p>
+                If you find yourself dissatisfied with any product or service
+                you've purchased from our website, you can request a refund
+                within 7 days from the date of purchase.
+              </p>
+            </div>
           </div>
         </div>
       </div>

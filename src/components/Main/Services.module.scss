@@ -104,8 +104,22 @@
 }
 
 .code {
+  background-image: linear-gradient(to bottom right, #cb3206, #e34c17),
+    url("/code.jpg");
+  &__bg {
+    background-image: linear-gradient(to bottom right, #cb3206, #e34c17);
+  }
+  span {
+    background-image: linear-gradient(
+      to right bottom,
+      rgba(#cb3206, 0.8),
+      rgba(#e34c17, 0.8)
+    );
+  }
+}
+.tech {
   background-image: linear-gradient(to bottom right, #0192cb, #01a1b6),
-    url("/code.webp");
+    url("/tech.jpg");
   &__bg {
     background-image: linear-gradient(to bottom right, #0192cb, #01a1b6);
   }
@@ -132,8 +146,37 @@
     );
   }
 }
+.language {
+  background-image: linear-gradient(to bottom right, #d20000, #e60201),
+    url("/language.webp");
+  &__bg {
+    background-image: linear-gradient(to bottom right, #d20000, #e60201);
+  }
+  span {
+    background-image: linear-gradient(
+      to right bottom,
+      rgba(#d20000, 0.8),
+      rgba(#e60201, 0.8)
+    );
+  }
+}
+.music {
+  background-image: linear-gradient(to bottom right, #919191, #919191),
+    url("/music.webp");
+  &__bg {
+    background-image: linear-gradient(to bottom right, #919191, #919191);
+  }
+  span {
+    background-image: linear-gradient(
+      to right bottom,
+      rgba(#fad7c1, 0.8),
+      rgba(#fddbc2, 0.8)
+    );
+  }
+}
 .section-services {
   padding: 3rem 1.5rem;
+  display: grid;
   &-img {
     &__heading {
       color: $color-white;
@@ -149,6 +192,7 @@
       letter-spacing: 2px;
     }
   }
+
   &__area {
     display: grid;
     gap: 2.5rem;
@@ -160,6 +204,7 @@
       transform-style: preserve-3d;
       transition: transform 300ms ease-in-out;
       box-shadow: 0 1px 4rem rgba($color: $color-secondary-light, $alpha: 0.1);
+      height: 100%;
     }
     &--front,
     &--back {
@@ -194,6 +239,9 @@
       }
     }
   }
+}
+.custom-carousel{
+  display: grid;
 }
 .flipped .section-services__area--front {
   transform: rotateY(-180deg);
@@ -241,7 +289,6 @@
   }
   .section-services {
     &__area {
-      grid-template-columns: repeat(2, 1fr);
       gap: 1rem;
     }
   }
@@ -272,7 +319,7 @@
     }
   }
 }
-@media (min-width: 1200px) {
+@media (min-width: 1000px) {
   .list {
     padding: 2rem;
   }
@@ -286,7 +333,6 @@
   .section-services {
     &__area {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
       gap: 1rem;
       justify-content: center;
     }
@@ -294,7 +340,7 @@
   .btn {
     width: 40%;
   }
-  .note{
+  .note {
     font-size: $fs-300;
   }
   .common {
