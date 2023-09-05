@@ -99,6 +99,12 @@ const ServiceItem: React.FC<ServiceItemProps> = ({
 };
 
 const Services = () => {
+  const [slides, setSlides] = useState(() => {
+    if (window.innerWidth > 1000) return 3;
+    if (window.innerWidth > 768) return 2;
+    if (window.innerWidth > 576) return 1;
+  });
+  /*
   const serviceItems = [
     {
       imageClass: classes.code,
@@ -136,77 +142,48 @@ const Services = () => {
         "Unleash your creativity and explore the world of art with our diverse art services. From oil paintings that bring life to your imagination to intricately detailed pencil drawings and awe-inspiring sculptures, our art offerings cater to various artistic expressions.",
     },
   ];
-  const learningItems = [
+  */
+  const serviceItems = [
     {
-      imageClass: classes.music,
-      bgClass: classes["music__bg"],
-      title: "Music",
-      items: ["Guitar", "Violin", "Vocal training", "Piano"],
-      itemIcon: [
-        "/music-icon.webp",
-        "/music-icon.webp",
-        "/music-icon.webp",
-        "/music-icon.webp",
+      imageClass: classes.code,
+      bgClass: classes["code__bg"],
+      title: "Software",
+      items: [
+        "Mobile development",
+        "Web development",
+        "Graphics Design",
+        "Software as a service",
       ],
-      link: "/events",
-      description:
-        "Unleash your creativity and explore the world of art with our diverse art services. From oil paintings that bring life to your imagination to intricately detailed pencil drawings and awe-inspiring sculptures, our art offerings cater to various artistic expressions.",
-    },
-    {
-      imageClass: classes.chess,
-      bgClass: classes["chess__bg"],
-      title: "Chess",
-      items: ["Beginner", "Intermediate", "Advanced", "For Children"],
       itemIcon: [
-        "/chess-icon.webp",
-        "/chess-icon.webp",
-        "/chess-icon.webp",
-        "/chess-icon.webp",
+        "/mobile-icon.png",
+        "/web.webp",
+        "/design-icon.webp",
+        "/saas.webp",
       ],
-      link: "/events",
+      link: "/tech",
       description:
-        "Unleash your creativity and explore the world of art with our diverse art services. From oil paintings that bring life to your imagination to intricately detailed pencil drawings and awe-inspiring sculptures, our art offerings cater to various artistic expressions.",
+        "Whether you need a mobile application that puts your business in the hands of your customers or a robust software system that powers your operations, our team of experts has you covered. From frontend development that creates captivating user interfaces to backend development that ensures seamless functionality, we deliver tailored software solutions that meet your unique needs.",
     },
     {
       imageClass: classes.art,
       bgClass: classes["art__bg"],
-      title: "Art",
-      items: [
-        "Pencil Drawings",
-        "Oil Paintings",
-        "Watercolors",
-        "Acrylic Paintings",
-      ],
-      itemIcon: [
-        "/art-icon.webp",
-        "/art-icon.webp",
-        "/art-icon.webp",
-        "/art-icon.webp",
-      ],
-      link: "/events",
-      description:
-        "Unleash your creativity and explore the world of art with our diverse art services. From oil paintings that bring life to your imagination to intricately detailed pencil drawings and awe-inspiring sculptures, our art offerings cater to various artistic expressions.",
-    },
-    {
-      imageClass: classes.tech,
-      bgClass: classes["tech__bg"],
-      title: "Tech",
-      items: ["Code", "Scratch", "Computer Skills"],
+      title: "Learning",
+      items: ["Language", "Art", "Music", "Chess"],
       itemIcon: [
         "/language-icon.webp",
         "/art-icon.webp",
         "/music-icon.webp",
         "/chess-icon.webp",
       ],
-      link: "/events",
+      link: "/learn",
       description:
         "Unleash your creativity and explore the world of art with our diverse art services. From oil paintings that bring life to your imagination to intricately detailed pencil drawings and awe-inspiring sculptures, our art offerings cater to various artistic expressions.",
     },
     {
-      imageClass: classes.language,
-      bgClass: classes["language__bg"],
-      title: "Language",
-      items: ["English", "Kiswahili", "French"],
+      imageClass: classes.performance,
+      bgClass: classes["performance__bg"],
+      title: "Events",
+      items: ["Language", "Art", "Music", "Chess"],
       itemIcon: [
         "/language-icon.webp",
         "/art-icon.webp",
@@ -219,23 +196,6 @@ const Services = () => {
     },
   ];
 
-  const responsiveOptions = [
-    {
-      breakpoint: "1000px",
-      numVisible: 1,
-      numScroll: 1,
-    },
-    {
-      breakpoint: "768px",
-      numVisible: 2,
-      numScroll: 1,
-    },
-    {
-      breakpoint: "576px",
-      numVisible: 1,
-      numScroll: 1,
-    },
-  ];
   return (
     <section className={classes["section-services"]} id="section-services">
       <h3 className={styles["heading-tertiary"]}>Services</h3>
@@ -244,7 +204,7 @@ const Services = () => {
       </h2>
       {/*
       <div className={classes["section-services__area"]}>
-        serviceItems.map((item, index) => (
+        learningItems.map((item, index) => (
           <ServiceItem
             key={index}
             imageClass={item.imageClass}
@@ -259,17 +219,20 @@ const Services = () => {
 
       </div>
         ))*/}
-      <div>
-        <Carousel<div>
-          value={learningItems}
-          numVisible={3}
-          numScroll={3}
-          responsiveOptions={responsiveOptions}
-          className={classes["custom-carousel"]}
-          circular
-          autoplayInterval={3000}
-          itemTemplate={ServiceItem}
-        />
+      <div className={classes["section-services__area"]}>
+        {serviceItems.map((item, index) => (
+          <ServiceItem
+            key={index}
+            imageClass={item.imageClass}
+            title={item.title}
+            items={item.items}
+            itemIcon={item.itemIcon}
+            bgClass={item.bgClass}
+            otherClass=""
+            link={item.link}
+            description={item.description}
+          />
+        ))}
       </div>
       <div>
         <p className={classes.note}>All plans include the following</p>

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import classes from "./HeroSlider.module.scss";
+import Section from "./Section";
 import { Link } from "react-scroll";
 
 interface SlideProps {
@@ -8,6 +9,7 @@ interface SlideProps {
   category: string;
   index: number;
   currentPair: number;
+  setCurrentPair: (currentPair: number)=>void;
   tag: string;
 }
 
@@ -18,6 +20,12 @@ interface HeroSliderProps {
     category: string;
     tag: string;
   }[];
+
+  content: {
+    primaryHeading: string;
+    secondaryHeading: string;
+    mainContent: { heading: string; paragraph: string }[];
+  }[];
 }
 
 const Slide: React.FC<SlideProps> = ({
@@ -27,6 +35,7 @@ const Slide: React.FC<SlideProps> = ({
   text,
   category,
   tag,
+  setCurrentPair
 }) => {
   const [link, setLink] = useState("");
   useEffect(() => {
@@ -36,6 +45,7 @@ const Slide: React.FC<SlideProps> = ({
     else if (currentPair === 3) setLink("language");
     else if (currentPair === 4) setLink("music");
   }, [currentPair]);
+  
   return (
     <div
       key={index}
@@ -63,11 +73,42 @@ const Slide: React.FC<SlideProps> = ({
           </Link>
         </div>
       </div>
+      <div className={classes["nav-numbers"]}>
+        <ul className={classes["nav-numbers__list"]}>
+          <li>
+            <Link className={currentPair == 0 ? classes["active-link"] : ""} onClick={()=>setCurrentPair(0)}>
+              01
+            </Link>
+          </li>
+          <li>
+            <Link className={currentPair == 1 ? classes["active-link"] : ""} onClick={()=>setCurrentPair(1)}>
+              02
+            </Link>
+          </li>
+          <li>
+            <Link className={currentPair == 2 ? classes["active-link"] : ""} onClick={()=>setCurrentPair(2)}>
+              03
+            </Link>
+          </li>
+
+          <li>
+            <Link className={currentPair == 3 ? classes["active-link"] : ""} onClick={()=>setCurrentPair(3)}>
+              04
+            </Link>
+          </li>
+
+          <li>
+            <Link className={currentPair == 4 ? classes["active-link"] : ""} onClick={()=>setCurrentPair(4)}>
+              05
+            </Link>
+          </li>
+        </ul>
+      </div>
     </div>
   );
 };
 
-const HeroSlider: React.FC<HeroSliderProps> = ({ slideData }) => {
+const HeroSlider: React.FC<HeroSliderProps> = ({ slideData, content }) => {
   const [currentPair, setCurrentPair] = useState(0);
 
   useEffect(() => {
@@ -78,24 +119,42 @@ const HeroSlider: React.FC<HeroSliderProps> = ({ slideData }) => {
     return () => {
       clearInterval(intervalID);
     };
-  }, []);
+  }, [currentPair]);
 
   return (
-    <div className={classes["hero-slider"]}>
+    <>
       {slideData.map((slide, index) => {
         return (
-          <Slide
-            key={index}
-            imageURL={slide.imageURL}
-            text={slide.text}
-            currentPair={currentPair}
-            index={index}
-            category={slide.category}
-            tag={slide.tag}
-          />
+          <>
+            <div className={classes["hero-slider"]}>
+              <Slide
+                key={index}
+                imageURL={slide.imageURL}
+                text={slide.text}
+                currentPair={currentPair}
+                setCurrentPair={setCurrentPair}
+                index={index}
+                category={slide.category}
+                tag={slide.tag}
+              />
+            </div>
+
+            <div
+              className={` ${classes["hero-content"]} ${
+                index === currentPair ? classes.active : classes.exit
+              }`}
+            >
+              <Section
+                key={index}
+                headingSecondary={content[index].secondaryHeading}
+                headingTertiary={content[index].primaryHeading}
+                content={content[index].mainContent}
+              />
+            </div>
+          </>
         );
       })}
-    </div>
+    </>
   );
 };
 

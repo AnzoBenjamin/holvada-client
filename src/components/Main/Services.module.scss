@@ -192,7 +192,6 @@
       letter-spacing: 2px;
     }
   }
-
   &__area {
     display: grid;
     gap: 2.5rem;
@@ -314,7 +313,7 @@
   }
   .section-services {
     &__area {
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(2, 1fr);
       gap: 1rem;
     }
   }
@@ -333,6 +332,7 @@
   .section-services {
     &__area {
       display: grid;
+      grid-template-columns: repeat(3, 1fr);
       gap: 1rem;
       justify-content: center;
     }

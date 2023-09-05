@@ -9,6 +9,11 @@ import Loading from "./UI/Loading";
 import AuthProvider from "./store/auth-context";
 import Login from "./components/Form/Login";
 import Signup from "./components/Form/Signup";
+import Art from "./components/Main/Learning/Art";
+import Chess from "./components/Main/Learning/Chess";
+import Language from "./components/Main/Learning/Language";
+import Music from "./components/Main/Learning/Music";
+import Tech from "./components/Main/Learning/Tech";
 import { Verification } from "./components/Verification";
 import { PrivateRoute } from "./PrivateRoute";
 import { ForgotPassword } from "./components/Form/ForgotPassword";
@@ -18,6 +23,7 @@ import { Pending } from "./components/Main/Account/Pending";
 import { Completed } from "./components/Main/Account/Completed";
 import AccountLayout from "./components/Main/Account/AccountLayout";
 import AccountDetails from "./components/Main/Account/AccountDetails";
+import { LazyMotion } from "framer-motion";
 function App() {
   const [isLoading, setIsLoading] = useState(true);
 
@@ -61,6 +67,26 @@ function App() {
             <Route
               path="/events"
               element={isLoading ? <Loading /> : <Events />}
+            />
+            <Route
+              path="/learning/chess"
+              element={isLoading ? <Loading /> : <Chess />}
+            />
+            <Route
+              path="/learning/art"
+              element={isLoading ? <Loading /> : <Art />}
+            />
+            <Route
+              path="/learning/language"
+              element={isLoading ? <Loading /> : <Language />}
+            />
+            <Route
+              path="/learning/tech"
+              element={isLoading ? <Loading /> : <Tech />}
+            />
+            <Route
+              path="/learning/music"
+              element={isLoading ? <Loading /> : <Music />}
             />
             <Route
               path="/forgot-password"

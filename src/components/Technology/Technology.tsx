@@ -25,8 +25,6 @@ const Technology = () => {
         animationStart={secondaryAnimationStart}
         otherClasses={classes.hero}
       />
-      <TechMain/>
-      <Footer />
     </React.Fragment>
   );
 };

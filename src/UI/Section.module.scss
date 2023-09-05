@@ -1,12 +1,15 @@
 @import "../scss/utils/variables";
 
 .section {
+  position: absolute;
+  top: 0;
   display: grid;
   grid-template-areas:
     "img"
     "heading"
     "content";
-  align-items: center;
+  margin-top: 100vh;
+  margin-inline: auto !important;
 }
 .img {
   width: 50%;
@@ -45,6 +48,7 @@
   font-size: $fs-400;
   font-family: "Cera-bold", sans-serif;
   margin-bottom: 0.5rem;
+  color: $color-secondary;
   &-area {
     grid-area: heading;
     margin-top: 4rem;
@@ -60,6 +64,9 @@
     gap: 1rem;
     margin-top: 6rem;
 
+  }
+  p{
+    color: $color-secondary-light;
   }
 }
 
