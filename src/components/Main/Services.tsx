@@ -1,8 +1,5 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { Button } from "primereact/button";
-import { Carousel } from "primereact/carousel";
-import { Tag } from "primereact/tag";
 import classes from "./Services.module.scss";
 import styles from "../../scss/utils/_helpers.module.scss";
 
@@ -99,11 +96,7 @@ const ServiceItem: React.FC<ServiceItemProps> = ({
 };
 
 const Services = () => {
-  const [slides, setSlides] = useState(() => {
-    if (window.innerWidth > 1000) return 3;
-    if (window.innerWidth > 768) return 2;
-    if (window.innerWidth > 576) return 1;
-  });
+
   /*
   const serviceItems = [
     {

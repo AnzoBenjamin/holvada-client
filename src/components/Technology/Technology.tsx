@@ -1,8 +1,7 @@
 import React from "react";
 import Header from "../Header/Header";
 import TechHero from "./TechHero";
-import Footer from "../Footer/Footer";
-import TechMain from "./TechMain";
+
 import classes from './Technology.module.scss'
 import { secondaryAnimationStart } from "../../utils/animation";
 

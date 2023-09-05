@@ -69,13 +69,13 @@ const Hero: React.FC = () => {
           className={classes["hero__btn-area"]}
         >
           <Link smooth to="footer">
-            <Button label="Contact"/>
+            <Button label="Contact" style={{backgroundColor: '#184751'}}/>
           </Link>
           <Link
             smooth
             to="section-services"
           >
-            <Button label="Services" className="p-button-outlined" />
+            <Button label="Services" className="p-button-outlined" style={{borderColor:"#184751", color: "#184751"}}/>
           </Link>
         </motion.div>
       </motion.div>
