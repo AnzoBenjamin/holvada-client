@@ -11,7 +11,7 @@ const LearnHero: React.FC = () => {
     },
     {
       imageURL: "code.jpg",
-      text: "Hack the World",
+      text: "Design a World",
       category: "tech",
       tag: "Code",
     },
