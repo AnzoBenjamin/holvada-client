@@ -4,14 +4,12 @@
   position: absolute;
   top: 0;
   display: grid;
-  left: 50%;
   grid-template-areas:
     "img"
     "heading"
     "content";
   margin-top: 110vh;
   margin-inline: auto !important;
-  transform: translateX(-50%);
 }
 .img {
   width: 50%;
@@ -78,6 +76,13 @@
   font-family: "Cera-bold", sans-serif;
   display: block;
   margin-bottom: 1rem;
+}
+@media (min-width: 768px) {
+  .section {
+    left: 50%;
+    transform: translateX(-50%);
+
+  }
 }
 
 @media (min-width: 1000px) {
