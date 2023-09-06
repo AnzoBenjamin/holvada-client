@@ -176,12 +176,11 @@ const Services = () => {
       imageClass: classes.performance,
       bgClass: classes["performance__bg"],
       title: "Events",
-      items: ["Language", "Art", "Music", "Chess"],
+      items: ["Competitions", "Concerts", "Showcases"],
       itemIcon: [
-        "/language-icon.webp",
-        "/art-icon.webp",
-        "/music-icon.webp",
-        "/chess-icon.webp",
+        "/competition-icon.png",
+        "/concert-icon.png",
+        "/showcase-icon.png",
       ],
       link: "/events",
       description:
