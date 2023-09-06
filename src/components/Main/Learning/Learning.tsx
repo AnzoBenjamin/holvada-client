@@ -3,6 +3,8 @@ import Header from "../../Header/Header";
 import LearnHero from "./LearnHero";
 import classes from "./Learning.module.scss";
 import { secondaryAnimationStart } from "../../../utils/animation";
+import LearningPrices from "./LearningPrices";
+import Footer from "../../Footer/Footer";
 
 
 const Learning: React.FC = () => {
@@ -44,6 +46,8 @@ const Learning: React.FC = () => {
         otherClasses={classes.hero}
         animationStart={secondaryAnimationStart}
       />
+      <LearningPrices/>
+        <Footer/>
     </React.Fragment>
   );
 };

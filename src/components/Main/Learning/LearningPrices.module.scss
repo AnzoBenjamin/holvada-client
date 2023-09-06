@@ -2,6 +2,7 @@
 
 .section-prices {
   padding: 3rem 1.5rem;
+  margin-top: 250vh;
 }
 .plan-header {
   text-align: center;
@@ -152,7 +153,10 @@
 @media (min-width: 768px) {
   .section-prices {
     padding: 3rem 2rem;
+    margin-top: 150vh;
+
   }
+  
   .common {
     &__area {
       grid-template-columns: repeat(2, 1fr);
@@ -186,8 +190,6 @@
         grid-column: 2/3;
       }
     }
-  }
-  .section-prices {
   }
   .card-area {
     grid-template-columns: repeat(2, 1fr);

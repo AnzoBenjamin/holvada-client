@@ -91,6 +91,32 @@
     gap: 2rem;
   }
 }
+.button-guide-animation {
+  position: relative;
+  text-align: center;
+  margin: 50px;
+
+  .animation-text {
+    position: absolute;
+    top: 0;
+    display: inline-block;
+    font-size: $fs-400;
+    opacity: 0;
+    width: fit-content;
+    transform: translate( 100%, -100px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+
+  &.show .animation-text {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  &.show button {
+    background-color: #28a745;
+  }
+}
+
 
 .nav-numbers {
   display: flex;
@@ -99,7 +125,7 @@
   bottom: 0;
   margin-bottom: 2rem;
   right: 50%;
-  transform: translateX(50%);
+  transform: translateX(45%);
   &__list {
     display: flex;
     gap: 1rem;

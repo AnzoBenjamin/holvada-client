@@ -4,12 +4,14 @@
   position: absolute;
   top: 0;
   display: grid;
+  left: 50%;
   grid-template-areas:
     "img"
     "heading"
     "content";
   margin-top: 110vh;
   margin-inline: auto !important;
+  transform: translateX(-50%);
 }
 .img {
   width: 50%;

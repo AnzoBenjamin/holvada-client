@@ -9,7 +9,7 @@ interface SlideProps {
   category: string;
   index: number;
   currentPair: number;
-  setCurrentPair: (currentPair: number)=>void;
+  setCurrentPair: (currentPair: number) => void;
   tag: string;
 }
 
@@ -35,9 +35,11 @@ const Slide: React.FC<SlideProps> = ({
   text,
   category,
   tag,
-  setCurrentPair
+  setCurrentPair,
 }) => {
   const [link, setLink] = useState("");
+  const [showAnimation, setShowAnimation] = useState(true);
+
   useEffect(() => {
     if (currentPair === 0) setLink("art");
     else if (currentPair === 1) setLink("tech");
@@ -45,7 +47,7 @@ const Slide: React.FC<SlideProps> = ({
     else if (currentPair === 3) setLink("language");
     else if (currentPair === 4) setLink("music");
   }, [currentPair]);
-  
+
   return (
     <div
       key={index}
@@ -68,37 +70,57 @@ const Slide: React.FC<SlideProps> = ({
 
             <span className={classes["heading-tertiary"]}>{category}</span>
           </p>
-          <Link smooth to={`section-${link}`} className={classes.btn}>
-            {tag}
-          </Link>
+          <div
+            className={`${classes["button-guide-animation"]} ${showAnimation ? classes.show : ""}`}
+          >
+            <div className={classes["animation-text"]}>Click here</div>
+            <Link smooth to={`section-${link}`} className={classes.btn} onClick={()=>setShowAnimation(false)}>
+              {tag}
+            </Link>
+          </div>
         </div>
       </div>
       <div className={classes["nav-numbers"]}>
         <ul className={classes["nav-numbers__list"]}>
           <li>
-            <Link className={currentPair == 0 ? classes["active-link"] : ""} onClick={()=>setCurrentPair(0)}>
+            <Link
+              className={currentPair == 0 ? classes["active-link"] : ""}
+              onClick={() => setCurrentPair(0)}
+            >
               01
             </Link>
           </li>
           <li>
-            <Link className={currentPair == 1 ? classes["active-link"] : ""} onClick={()=>setCurrentPair(1)}>
+            <Link
+              className={currentPair == 1 ? classes["active-link"] : ""}
+              onClick={() => setCurrentPair(1)}
+            >
               02
             </Link>
           </li>
           <li>
-            <Link className={currentPair == 2 ? classes["active-link"] : ""} onClick={()=>setCurrentPair(2)}>
+            <Link
+              className={currentPair == 2 ? classes["active-link"] : ""}
+              onClick={() => setCurrentPair(2)}
+            >
               03
             </Link>
           </li>
 
           <li>
-            <Link className={currentPair == 3 ? classes["active-link"] : ""} onClick={()=>setCurrentPair(3)}>
+            <Link
+              className={currentPair == 3 ? classes["active-link"] : ""}
+              onClick={() => setCurrentPair(3)}
+            >
               04
             </Link>
           </li>
 
           <li>
-            <Link className={currentPair == 4 ? classes["active-link"] : ""} onClick={()=>setCurrentPair(4)}>
+            <Link
+              className={currentPair == 4 ? classes["active-link"] : ""}
+              onClick={() => setCurrentPair(4)}
+            >
               05
             </Link>
           </li>
