@@ -3,6 +3,7 @@ import Header from "../../Header/Header";
 import EventsHero from "./EventsHero";
 import classes from "./Events.module.scss";
 import { secondaryAnimationStart } from "../../../utils/animation";
+import EventsMain from "./EventsMain";
 import Footer from "../../Footer/Footer";
 
 const Events: React.FC = () => {
@@ -24,6 +25,7 @@ const Events: React.FC = () => {
         otherClasses={classes.hero}
         animationStart={secondaryAnimationStart}
       />
+      <EventsMain/>
       <Footer />
     </React.Fragment>
   );

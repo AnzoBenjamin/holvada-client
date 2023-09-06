@@ -1,0 +1,50 @@
+@import "../../../scss/utils/variables";
+
+.intro-section {
+  display: grid;
+  gap: 3rem;
+}
+
+.heading-secondary {
+  font-family: "Unica One", cursive;
+  font-size: $fs-600;
+  margin-bottom: 1rem;
+}
+.gallery-photos {
+  display: grid;
+}
+.img {
+  height: 100%;
+}
+@media (min-width: 768px) {
+    .heading-secondary {
+        font-size: $fs-700;
+      }
+  .gallery-photos {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (min-width: 930px) {
+  .intro-section {
+    display: flex;
+    gap: 3rem;
+  }
+}
+
+@media (min-width: 1000px) {
+  .intro-section {
+    gap: 6rem;
+  }
+  .heading-secondary {
+    font-size: $fs-800;
+  }
+}
+@media (min-width: 1100px) {
+  .gallery-photos {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .intro-section {
+    gap: 12rem;
+  }
+}

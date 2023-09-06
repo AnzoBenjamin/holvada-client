@@ -14,9 +14,10 @@
     height: 100%;
     display: grid;
     justify-content: center;
-    align-items: center;
+    align-items: end;
     text-align: center;
-    padding-inline:2rem ;
+    max-width: 75em;
+    margin-inline: auto;
   }
 }
 .btn-area {
@@ -28,21 +29,32 @@
     color: $color-primary-light;
   }
 }
+.intro-section {
+  position: relative;
+  display: flex;
+}
 .heading {
   &-primary {
-    font-size: $fs-900;
-    line-height: .8;
-    margin-bottom: 1rem;
+    font-size: $fs-800;
+    line-height: 1.1;
+    margin-bottom: 8rem;
+    font-family: "Unica One", sans-serif;
   }
   &-secondary {
     max-width: 75rem;
     margin-inline: auto;
-    font-family: "Inter", sans-serif;
     font-weight: 500;
     font-size: $fs-400;
   }
 }
-@media (min-width: 1000px){
+@media (min-width: 768px) {
+  .heading {
+    &-primary {
+      font-size: $fs-900;
+    }
+  }
+}
+@media (min-width: 1000px) {
   .heading {
     &-primary {
       font-size: $fs-900 * 1.5;
