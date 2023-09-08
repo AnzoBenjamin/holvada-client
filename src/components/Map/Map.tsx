@@ -10,7 +10,7 @@ import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 
 // Import the marker icon image
-import markerIcon from './location.svg'; // Adjust the path as needed
+import markerIcon from '/location.svg'; // Adjust the path as needed
 
 interface MapProps {
   globalLocation: [number, number] | null;
