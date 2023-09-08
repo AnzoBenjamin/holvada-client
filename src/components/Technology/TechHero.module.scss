@@ -19,6 +19,21 @@
     max-width: 75em;
     margin-inline: auto;
     font-family: "Unica One", sans-serif;
-    font-size: $fs-900;
+    font-size: $fs-700;
+  }
+}
+
+@media (min-width: 768px) {
+  .hero {
+    &-text {
+      font-size: $fs-800;
+    }
+  }
+}
+@media (min-width: 1000px) {
+  .hero {
+    &-text {
+      font-size: $fs-900;
+    }
   }
 }
