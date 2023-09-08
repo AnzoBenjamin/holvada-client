@@ -41,6 +41,7 @@ const Slide: React.FC<SlideProps> = ({
   const [showAnimation, setShowAnimation] = useState(true);
 
   useEffect(() => {
+    tag
     if (currentPair === 0) setLink("art");
     else if (currentPair === 1) setLink("tech");
     else if (currentPair === 2) setLink("chess");
