@@ -1,6 +1,8 @@
 import React from "react";
 import Header from "../Header/Header";
 import TechHero from "./TechHero";
+import TechMain from "./TechMain";
+import Footer from "../Footer/Footer";
 
 import classes from './Technology.module.scss'
 import { secondaryAnimationStart } from "../../utils/animation";
@@ -24,6 +26,8 @@ const Technology = () => {
         animationStart={secondaryAnimationStart}
         otherClasses={classes.hero}
       />
+      <TechMain/>
+      <Footer/>
     </React.Fragment>
   );
 };

@@ -8,7 +8,7 @@ import Footer from "../../Footer/Footer";
 
 
 const Learning: React.FC = () => {
-  const navItems = ["Home", "Art", "Tech", "Chess", "Language", "Music"];
+  const navItems = [""];
   const navLinks = [
     "section-home",
     "section-art",

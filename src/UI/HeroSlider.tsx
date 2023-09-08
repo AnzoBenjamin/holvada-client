@@ -73,9 +73,13 @@ const Slide: React.FC<SlideProps> = ({
           <div
             className={`${classes["button-guide-animation"]} ${showAnimation ? classes.show : ""}`}
           >
-            <div className={classes["animation-text"]}>Click here</div>
+            {
+              /*
+              <div className={classes["animation-text"]}>Click here</div>
+              */
+            }
             <Link smooth to={`section-${link}`} className={classes.btn} onClick={()=>setShowAnimation(false)}>
-              {tag}
+              Go to
             </Link>
           </div>
         </div>
