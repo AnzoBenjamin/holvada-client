@@ -6,7 +6,11 @@ import {
   Popup,
   useMapEvents,
 } from "react-leaflet";
+import L from "leaflet";
 import "leaflet/dist/leaflet.css";
+
+// Import the marker icon image
+import markerIcon from './location.svg'; // Adjust the path as needed
 
 interface MapProps {
   globalLocation: [number, number] | null;
@@ -30,13 +34,20 @@ const LocationMarker: React.FC<LocationMarkerProps> = ({
     onLocationChange(lat, lng);
   };
 
+  const customIcon = new L.Icon({
+    iconUrl: markerIcon, // Use the imported marker icon
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+  });
+
   // Use MapEvents to listen to click events on the map
   useMapEvents({
     click: handleMapClick,
   });
 
   return location ? (
-    <Marker position={location}>
+    <Marker position={location} icon={customIcon}>
       <Popup>You are here</Popup>
     </Marker>
   ) : null;
@@ -46,7 +57,7 @@ const Map: React.FC<MapProps> = ({ onLocationChange, globalLocation }) => {
   const [location, setLocation] = React.useState<[number, number] | null>(globalLocation);
 
   // Ref to store the map container
-  const mapContainerRef = useRef<typeof MapContainer>(null);
+  const mapContainerRef = useRef<typeof MapContainer | null>(null); // Use typeof MapContainer
 
   // Call invalidateSize after map is mounted to force update
   useEffect(() => {
@@ -74,6 +85,7 @@ const Map: React.FC<MapProps> = ({ onLocationChange, globalLocation }) => {
 
   return (
     location && (
+      // @ts-ignore
       <MapContainer ref={mapContainerRef} center={location} zoom={15}>
         <TileLayer
           attribution="&copy; Openstreet map"
