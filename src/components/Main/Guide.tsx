@@ -16,7 +16,7 @@ const Guide = () => {
             <p className={classes["step-description"]}>
               Browse through the various programs available, including software
               development, language learning, art, music, design, and chess.
-              Hover the cursor over (swipe on mobile) the program that interests
+              Hover the cursor over (tap on mobile) the program that interests
               you to learn more about its details, curriculum, and benefits.
             </p>
           </div>
